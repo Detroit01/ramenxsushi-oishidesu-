@@ -59,12 +59,12 @@
                     <span class="font-semibold tracking-tight text-sm sm:text-base text-stone-900 dark:text-zinc-100">RamenXsushi-Oishidesu</span>
                 </a>
                 <span class="hidden sm:inline-block text-stone-300 dark:text-zinc-700">/</span>
-                <span class="hidden sm:inline-block text-xs font-mono text-stone-500 dark:text-zinc-400">db_oishidesu (8 Tabel)</span>
+                <span class="hidden sm:inline-block text-xs font-mono text-stone-500 dark:text-zinc-400">db_oishidesu (10 Tabel)</span>
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
                 <a href="#bagian-7" class="hidden md:inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 dark:border-zinc-700 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-colors">
-                    Eksplorasi 8 Tabel &amp; Simulasi
+                    Eksplorasi 10 Tabel &amp; Simulasi
                 </a>
                 <button id="themeToggle" type="button" aria-label="Ganti Tema" class="p-2 rounded-lg border border-stone-200 dark:border-zinc-700 hover:bg-stone-100 dark:hover:bg-zinc-800 text-stone-600 dark:text-zinc-300 transition-colors">
                     <svg id="sunIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,15 +127,15 @@
                             </div>
                             <div class="flex justify-between">
                                 <span>Total Entitas</span>
-                                <span class="font-mono text-stone-700 dark:text-zinc-300">8 Tabel (3NF)</span>
+                                <span class="font-mono text-stone-700 dark:text-zinc-300">10 Tabel (3NF)</span>
                             </div>
                             <div class="flex justify-between">
                                 <span>Data Menu</span>
                                 <span class="font-mono text-stone-700 dark:text-zinc-300">21 Item (6 Kat.)</span>
                             </div>
                             <div class="flex justify-between">
-                                <span>Bahan Dapur</span>
-                                <span class="font-mono text-stone-700 dark:text-zinc-300">16 Bahan Baku</span>
+                                <span>Pegawai &amp; Bahan</span>
+                                <span class="font-mono text-stone-700 dark:text-zinc-300">6 Pegawai · 16 Bahan</span>
                             </div>
                         </div>
                     </div>
@@ -154,14 +154,14 @@
                         Perancangan Sistem Basis Data Point of Sale (POS) dan Manajemen Stok Bahan Baku pada Restoran Jepang “RamenXsushi-Oishidesu”
                     </h1>
                     <p class="text-base sm:text-lg text-stone-600 dark:text-zinc-400 leading-relaxed mb-6">
-                        Dokumentasi lengkap perancangan basis data relasional mulai dari alur prosedur penjualan, pemetaan matriks relasi 8 entitas, tahapan normalisasi (Unnormalized hingga 3NF), diagram ERD dan LRS, sampai implementasi MySQL dan simulasi transaksi terintegrasi dengan stok bahan baku dapur.
+                        Dokumentasi lengkap perancangan basis data relasional mulai dari alur prosedur penjualan, pemetaan matriks relasi 10 entitas, tahapan normalisasi (Unnormalized hingga 3NF), diagram ERD dan LRS, sampai implementasi MySQL dan simulasi transaksi kasir, nomor meja, stok bahan baku dapur, serta laporan akhir bulanan.
                     </p>
                     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-mono text-stone-500 dark:text-zinc-400">
                         <span>Studi Kasus: F&amp;B Japanese Casual Dining</span>
                         <span>•</span>
-                        <span>Skema: 8 Tabel Terintegrasi</span>
+                        <span>Skema: 10 Tabel Terintegrasi</span>
                         <span>•</span>
-                        <span>Fitur: POS Kasir &amp; Inventori Bahan Baku</span>
+                        <span>Fitur: POS Kasir, Nomor Meja, Bahan Baku &amp; Laporan Bulanan</span>
                     </div>
                 </section>
 
@@ -177,13 +177,13 @@
                             <strong>RamenXsushi-Oishidesu</strong> merupakan usaha yang bergerak di bidang kuliner dengan menyediakan berbagai makanan dan minuman khas Jepang, seperti <em>sushi</em>, <em>ramen</em>, <em>donburi</em>, <em>appetizer</em>, <em>dessert</em>, dan minuman. Dalam kegiatan operasionalnya, restoran melakukan pencatatan transaksi penjualan, pemesanan menu, pembayaran pelanggan, serta pemantauan stok bahan baku dapur setiap harinya.
                         </p>
                         <p class="font-medium text-stone-900 dark:text-zinc-100">
-                            Prosedur sistem penjualan dan pengelolaan bahan pada RamenXsushi-Oishidesu adalah sebagai berikut:
+                            Prosedur sistem penjualan pada RamenXsushi-Oishidesu adalah sebagai berikut:
                         </p>
                         <p>
-                            Pelanggan datang ke restoran RamenXsushi-Oishidesu dan melakukan pemesanan makanan maupun minuman kepada bagian kasir. Kasir mencatat data pelanggan serta pesanan yang dipilih, kemudian pesanan diteruskan kepada bagian dapur untuk diproses. Bagian dapur menyiapkan makanan dan minuman sesuai pesanan yang telah diterima menggunakan stok <strong>bahan baku makanan</strong> yang tersedia di penyimpanan dapur (seperti mie ramen basah, beras Jepang, ikan salmon segar, kaldu paitan, nori, daging sapi slice, hingga bubuk matcha) berdasarkan takaran resep masing-masing menu. Setelah pesanan selesai dibuat, makanan dan minuman diserahkan kepada pelanggan. Kasir kemudian melakukan perhitungan total harga berdasarkan menu yang dipesan, jumlah pesanan, serta harga masing-masing menu.
+                            Pelanggan datang ke restoran RamenXsushi-Oishidesu dan melakukan pemesanan makanan maupun minuman kepada bagian kasir. Pegawai kasir yang bertugas akan mencatat identitas kasir, data pelanggan, <strong>nomor meja</strong> pelanggan (<code>M01</code>–<code>M10</code>), serta daftar pesanan yang dipilih, kemudian pesanan diteruskan kepada bagian dapur untuk diproses. Bagian dapur menyiapkan makanan dan minuman sesuai pesanan yang telah diterima menggunakan stok <strong>bahan baku makanan</strong> yang tersedia di penyimpanan berdasarkan takaran resep masing-masing menu. Setelah pesanan selesai dibuat, makanan dan minuman diserahkan ke nomor meja pelanggan. Kasir kemudian melakukan perhitungan total harga berdasarkan menu yang dipesan, jumlah pesanan, serta harga masing-masing menu.
                         </p>
                         <p>
-                            Pelanggan melakukan pembayaran sesuai total harga pesanan melalui metode pembayaran <strong>tunai</strong>, <strong>QRIS</strong>, maupun <strong>transfer</strong>. Setelah pembayaran diterima, kasir mencatat transaksi pembayaran dan memberikan bukti pembayaran kepada pelanggan. Data transaksi pesanan, pembayaran, serta pemakaian stok bahan baku selanjutnya disimpan sebagai arsip restoran dan digunakan oleh pemilik untuk melihat laporan transaksi, total pendapatan, jumlah menu yang terjual, serta peringatan bahan baku dapur yang mulai menipis agar segera dilakukan pembelian ulang ke supplier.
+                            Pelanggan melakukan pembayaran sesuai total harga pesanan melalui metode pembayaran <strong>tunai</strong>, <strong>QRIS</strong>, maupun <strong>transfer</strong>. Setelah pembayaran diterima, kasir mencatat transaksi pembayaran dan memberikan bukti pembayaran (struk) kepada pelanggan yang memuat nama kasir, nomor meja, dan rincian menu. Data transaksi pesanan, pembayaran, serta pemakaian bahan baku selanjutnya disimpan sebagai arsip restoran dan direkap menjadi <strong>laporan akhir bulanan</strong> yang digunakan oleh pemilik maupun manajer untuk melihat rekap transaksi, total pendapatan bulanan, serta jumlah menu yang terjual.
                         </p>
                     </div>
                 </section>
@@ -192,121 +192,165 @@
                 <section id="bagian-2" class="scroll-mt-20 space-y-4">
                     <div class="flex items-baseline gap-2.5">
                         <span class="font-mono text-sm font-semibold text-vermilion">02.</span>
-                        <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-zinc-100">Matriks Relasi</h2>
+                        <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-zinc-100">Matriks Relasi (10 Entitas)</h2>
                     </div>
                     <p class="text-sm sm:text-base text-stone-600 dark:text-zinc-400">
-                        Berdasarkan alur penjualan dan pengelolaan bahan baku di atas, dipetakan 8 entitas utama beserta derajat kardinalitas relasi antar entitasnya:
+                        Berdasarkan alur penjualan, pencatatan kasir &amp; nomor meja, pengelolaan bahan baku, serta laporan bulanan di atas, dipetakan 10 entitas utama beserta derajat kardinalitas relasinya:
                     </p>
 
                     <div class="overflow-x-auto rounded-xl border border-stone-200 dark:border-zinc-800 bg-white dark:bg-[#18181b]">
-                        <table class="w-full text-left border-collapse text-xs">
+                        <table class="w-full text-left border-collapse text-[11px]">
                             <thead>
                                 <tr class="bg-stone-100/80 dark:bg-zinc-800/80 border-b border-stone-200 dark:border-zinc-700 font-mono">
-                                    <th class="p-2.5 font-semibold text-stone-900 dark:text-zinc-100">Entitas</th>
-                                    <th class="p-2.5 font-semibold">KATEGORI</th>
-                                    <th class="p-2.5 font-semibold">MENU</th>
-                                    <th class="p-2.5 font-semibold">PELANGGAN</th>
-                                    <th class="p-2.5 font-semibold">PESANAN</th>
-                                    <th class="p-2.5 font-semibold">DETAIL_PSN</th>
-                                    <th class="p-2.5 font-semibold">PEMBAYARAN</th>
-                                    <th class="p-2.5 font-semibold">BAHAN_BAKU</th>
-                                    <th class="p-2.5 font-semibold">RESEP_BAHAN</th>
+                                    <th class="p-2 font-semibold text-stone-900 dark:text-zinc-100">Entitas</th>
+                                    <th class="p-2 font-semibold">KATEGORI</th>
+                                    <th class="p-2 font-semibold">MENU</th>
+                                    <th class="p-2 font-semibold">PEGAWAI</th>
+                                    <th class="p-2 font-semibold">PELANGGAN</th>
+                                    <th class="p-2 font-semibold">PESANAN</th>
+                                    <th class="p-2 font-semibold">DETAIL_PSN</th>
+                                    <th class="p-2 font-semibold">PEMBAYARAN</th>
+                                    <th class="p-2 font-semibold">BAHAN_BAKU</th>
+                                    <th class="p-2 font-semibold">RESEP_BAHAN</th>
+                                    <th class="p-2 font-semibold">LAP_BULANAN</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-stone-200 dark:divide-zinc-800">
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">KATEGORI</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Memiliki (1:M)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">KATEGORI</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Memiliki (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">MENU</td>
-                                    <td class="p-2.5">Bagian dari (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-500 italic">Dipesan (M:M)</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Tercatat (1:M)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-500 italic">Memakai (M:M)</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Komposisi (1:M)</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">MENU</td>
+                                    <td class="p-2">Bagian (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-500 italic">Dipesan (M:M)</td>
+                                    <td class="p-2 text-vermilion font-medium">Tercatat (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-500 italic">Memakai (M:M)</td>
+                                    <td class="p-2 text-vermilion font-medium">Komposisi (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PELANGGAN</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Membuat (1:M)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PEGAWAI</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Melayani (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Mengesahkan (1:M)</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PESANAN</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-500 italic">Memuat (M:M)</td>
-                                    <td class="p-2.5">Milik (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Rincian (1:M)</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Dibayar (1:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PELANGGAN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Membuat (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">DETAIL_PSN</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5">Merujuk (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5">Bagian (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PESANAN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-500 italic">Memuat (M:M)</td>
+                                    <td class="p-2">Dicatat (M:1)</td>
+                                    <td class="p-2">Milik (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Rincian (1:M)</td>
+                                    <td class="p-2 text-vermilion font-medium">Dibayar (1:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PEMBAYARAN</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5">Melunasi (1:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">DETAIL_PSN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Merujuk (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Bagian (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">BAHAN_BAKU</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-500 italic">Dipakai (M:M)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-vermilion font-medium">Takaran (1:M)</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">PEMBAYARAN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Melunasi (1:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                                 <tr>
-                                    <td class="p-2.5 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">RESEP_BAHAN</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5">Untuk (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
-                                    <td class="p-2.5">Mengambil (M:1)</td>
-                                    <td class="p-2.5 text-stone-400">—</td>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">BAHAN_BAKU</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-500 italic">Dipakai (M:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-vermilion font-medium">Takaran (1:M)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">RESEP_BAHAN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Untuk (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Mengambil (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-mono font-semibold bg-stone-50/50 dark:bg-zinc-900/40">LAP_BULANAN</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2">Disahkan (M:1)</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
+                                    <td class="p-2 text-stone-400">—</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <p class="text-xs text-stone-500 dark:text-zinc-400">
-                        *Catatan Teknis: Terdapat dua relasi <strong>Many-to-Many (M:M)</strong> yang dipecah: (1) <code class="font-mono text-stone-800 dark:text-zinc-200">PESANAN</code> dengan <code class="font-mono text-stone-800 dark:text-zinc-200">MENU</code> melalui <code class="font-mono text-stone-800 dark:text-zinc-200">DETAIL_PESANAN</code>, serta (2) <code class="font-mono text-stone-800 dark:text-zinc-200">MENU</code> dengan <code class="font-mono text-stone-800 dark:text-zinc-200">BAHAN_BAKU</code> melalui <code class="font-mono text-stone-800 dark:text-zinc-200">RESEP_BAHAN</code> untuk mencatat takaran bahan setiap porsi menu.
+                        *Catatan Teknis: Satu pegawai kasir (<code class="font-mono">PEGAWAI</code>) melayani banyak transaksi (<code class="font-mono">PESANAN</code> 1:M), sedangkan manajer pada tabel <code class="font-mono">PEGAWAI</code> mengesahkan arsip <code class="font-mono">LAPORAN_BULANAN</code> (1:M). Relasi M:M antara <code class="font-mono">PESANAN</code>–<code class="font-mono">MENU</code> dipecah menjadi <code class="font-mono">DETAIL_PESANAN</code>, dan <code class="font-mono">MENU</code>–<code class="font-mono">BAHAN_BAKU</code> dipecah menjadi <code class="font-mono">RESEP_BAHAN</code>.
                     </p>
                 </section>
 
@@ -317,7 +361,7 @@
                         <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-zinc-100">Dokumen Pendukung</h2>
                     </div>
                     <p class="text-sm sm:text-base text-stone-600 dark:text-zinc-400">
-                        Berikut adalah dokumen sumber operasional di RamenXsushi-Oishidesu yang menjadi dasar pembentukan tabel: (A) Struk Bukti Pembayaran Kasir dan (B) Kartu Stok Bahan Baku Dapur.
+                        Berikut adalah dua dokumen operasional utama pada RamenXsushi-Oishidesu: (A) Struk Bukti Pembayaran Kasir (lengkap dengan <strong>Nama Kasir</strong> dan <strong>Nomor Meja</strong>) serta (B) Dokumen Rekap <strong>Laporan Akhir Bulanan</strong> untuk pemilik restoran.
                     </p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-2 items-start">
@@ -326,76 +370,69 @@
                             <div class="text-center border-b border-dashed border-stone-300 pb-3 mb-3">
                                 <div class="text-sm font-bold tracking-wider uppercase">RAMENXSUSHI-OISHIDESU</div>
                                 <div class="text-[11px] text-stone-500">Jl. Pemuda Raya No. 45, Jakarta Timur</div>
-                                <div class="text-[10px] text-vermilion font-semibold mt-1">[DOKUMEN A: BUKTI PEMBAYARAN]</div>
+                                <div class="text-[10px] text-vermilion font-semibold mt-1">[DOKUMEN A: BUKTI PEMBAYARAN KASIR]</div>
                             </div>
 
                             <div class="space-y-1 text-[11px] border-b border-dashed border-stone-300 pb-3 mb-3">
-                                <div class="flex justify-between"><span class="text-stone-500">ID Pesanan:</span><span class="font-semibold">PSN-001</span></div>
-                                <div class="flex justify-between"><span class="text-stone-500">Tanggal:</span><span>21/11/2026 11:30</span></div>
-                                <div class="flex justify-between"><span class="text-stone-500">Pelanggan:</span><span>PLG-001 — Dimas Pratama</span></div>
-                                <div class="flex justify-between"><span class="text-stone-500">Status Pesanan:</span><span class="font-semibold">Selesai</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">ID Pesanan:</span><span class="font-semibold">PSN001</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">Nomor Meja:</span><span class="font-bold text-vermilion">Meja M03</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">Nama Kasir:</span><span class="font-semibold">PEG01 — Hana Takahashi</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">Tanggal:</span><span>20/11/2026 12:15</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">Pelanggan:</span><span>PLG01 — Raka Pratama</span></div>
                             </div>
 
                             <div class="space-y-2 border-b border-dashed border-stone-300 pb-3 mb-3 text-[11px]">
                                 <div>
-                                    <div class="flex justify-between font-semibold"><span>Tori Paitan Ramen</span><span>Rp 76.000</span></div>
-                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Ramen] 2 x Rp 38.000</span><span>MNU-001</span></div>
+                                    <div class="flex justify-between font-semibold"><span>Salmon Mentai Roll</span><span>Rp 76.000</span></div>
+                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Sushi] 2 x Rp 38.000</span><span>MNU01</span></div>
                                 </div>
                                 <div>
-                                    <div class="flex justify-between font-semibold"><span>Salmon Mentai Roll</span><span>Rp 32.000</span></div>
-                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Sushi] 1 x Rp 32.000</span><span>MNU-005</span></div>
+                                    <div class="flex justify-between font-semibold"><span>Tori Paitan Ramen</span><span>Rp 42.000</span></div>
+                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Ramen] 1 x Rp 42.000</span><span>MNU06</span></div>
                                 </div>
                                 <div>
-                                    <div class="flex justify-between font-semibold"><span>Cold Ocha</span><span>Rp 16.000</span></div>
-                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Minuman] 2 x Rp 8.000</span><span>MNU-019</span></div>
+                                    <div class="flex justify-between font-semibold"><span>Cold Ocha (Refill)</span><span>Rp 10.000</span></div>
+                                    <div class="flex justify-between text-stone-500 text-[10px]"><span>[Minuman] 1 x Rp 10.000</span><span>MNU19</span></div>
                                 </div>
                             </div>
 
                             <div class="space-y-1 text-[11px]">
-                                <div class="flex justify-between text-sm font-bold"><span>TOTAL HARGA</span><span>Rp 124.000</span></div>
-                                <div class="flex justify-between"><span class="text-stone-500">ID Pembayaran:</span><span>BYR-001</span></div>
+                                <div class="flex justify-between text-sm font-bold"><span>TOTAL HARGA</span><span>Rp 128.000</span></div>
+                                <div class="flex justify-between"><span class="text-stone-500">ID Pembayaran:</span><span>BYR001</span></div>
                                 <div class="flex justify-between"><span class="text-stone-500">Metode Bayar:</span><span>QRIS</span></div>
                                 <div class="flex justify-between"><span class="text-stone-500">Status Bayar:</span><span class="font-semibold text-emerald-700">Lunas</span></div>
                             </div>
                         </div>
 
-                        <!-- Dokumen B: Kartu Stok Dapur -->
+                        <!-- Dokumen B: Laporan Akhir Bulanan -->
                         <div class="bg-white text-stone-900 border border-stone-200 shadow-sm rounded-xl p-5 font-mono text-xs leading-relaxed">
                             <div class="text-center border-b border-dashed border-stone-300 pb-3 mb-3">
-                                <div class="text-sm font-bold tracking-wider uppercase">KARTU STOK BAHAN DAPUR</div>
-                                <div class="text-[11px] text-stone-500">Gudang Bahan Basah &amp; Kering Oishidesu</div>
-                                <div class="text-[10px] text-vermilion font-semibold mt-1">[DOKUMEN B: LOG INVENTORI BAHAN]</div>
+                                <div class="text-sm font-bold tracking-wider uppercase">LAPORAN AKHIR BULANAN</div>
+                                <div class="text-[11px] text-stone-500">Arsip Rekap Penjualan Pemilik Restoran</div>
+                                <div class="text-[10px] text-vermilion font-semibold mt-1">[DOKUMEN B: REKAP BULANAN]</div>
                             </div>
 
                             <div class="space-y-2 text-[11px] border-b border-dashed border-stone-300 pb-3 mb-3">
                                 <div class="flex justify-between font-semibold bg-stone-100 px-2 py-1 rounded">
-                                    <span>Bahan Baku</span>
-                                    <span>Sisa / Min</span>
+                                    <span>Periode Bulan</span>
+                                    <span>Omzet &amp; Transaksi</span>
                                 </div>
-                                <div class="flex justify-between px-1">
-                                    <span>BHN-001 Mie Ramen Basah</span>
-                                    <span>45 / 15 porsi</span>
+                                <div class="px-1 space-y-0.5">
+                                    <div class="flex justify-between font-semibold"><span>LAP-2026-09 (Sep 2026)</span><span>Rp 28.450.000</span></div>
+                                    <div class="text-[10px] text-stone-500">312 Trx · Terlaris: Tori Paitan Ramen</div>
                                 </div>
-                                <div class="flex justify-between px-1">
-                                    <span>BHN-002 Ikan Salmon Fillet</span>
-                                    <span>3200 / 1000 gr</span>
+                                <div class="px-1 space-y-0.5">
+                                    <div class="flex justify-between font-semibold"><span>LAP-2026-10 (Okt 2026)</span><span>Rp 31.920.000</span></div>
+                                    <div class="text-[10px] text-stone-500">348 Trx · Terlaris: Salmon Mentai Roll</div>
                                 </div>
-                                <div class="flex justify-between px-1">
-                                    <span>BHN-003 Beras Jepang Japonica</span>
-                                    <span>18000 / 5000 gr</span>
-                                </div>
-                                <div class="flex justify-between px-1">
-                                    <span>BHN-005 Kaldu Ayam Paitan</span>
-                                    <span>12000 / 3000 ml</span>
-                                </div>
-                                <div class="flex justify-between px-1 text-vermilion font-semibold">
-                                    <span>BHN-009 Saus Mentai Spesial</span>
-                                    <span>450 / 500 gr (!)</span>
+                                <div class="px-1 space-y-0.5 text-vermilion">
+                                    <div class="flex justify-between font-semibold"><span>LAP-2026-11 (Nov 2026)</span><span>Berjalan (Live)</span></div>
+                                    <div class="text-[10px] text-stone-600">Disahkan: PEG05 — Kenji Sato (Manajer)</div>
                                 </div>
                             </div>
 
                             <div class="text-[10.5px] text-stone-500 space-y-1">
-                                <div>*Setiap 1 porsi menu terjual otomatis memotong stok bahan pada tabel <strong class="text-stone-800">BAHAN_BAKU</strong> sesuai takaran pada <strong class="text-stone-800">RESEP_BAHAN</strong>.</div>
+                                <div>*Setiap penutupan akhir bulan, manajer mencetak rekap pendapatan &amp; menu terjual ke tabel <strong class="text-stone-800">LAPORAN_BULANAN</strong>.</div>
                             </div>
                         </div>
                     </div>
@@ -415,10 +452,10 @@
                             <span class="text-xs font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-zinc-800 text-stone-600 dark:text-zinc-400">Tahap 1</span>
                         </div>
                         <p class="text-sm text-stone-600 dark:text-zinc-400">
-                            Gabungan mentah seluruh atribut transaksi kasir dan data bahan baku dapur ke dalam satu tabel dengan <em>repeating group</em>.
+                            Seluruh atribut dari struk kasir (termasuk nomor meja dan nama kasir), kartu stok bahan baku dapur, dan laporan akhir bulanan dikumpulkan mentah dalam satu tabel.
                         </p>
                         <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 font-mono text-xs text-stone-700 dark:text-zinc-300 leading-relaxed overflow-x-auto">
-                            <strong>UNF_Oishidesu</strong> (id_pesanan, tanggal_pesanan, status_pesanan, id_pelanggan, nama_pelanggan, no_telepon, alamat, email, {id_menu, nama_menu, deskripsi_menu, id_kategori, nama_kategori, deskripsi_kategori, harga, stok_menu, jumlah, harga_satuan, subtotal, {id_resep, id_bahan, nama_bahan, kategori_bahan, jumlah_stok, satuan, stok_minimum, harga_satuan_bahan, supplier, takaran_pakai, satuan_pakai}}, total_harga, id_pembayaran, tanggal_pembayaran, metode_pembayaran, jumlah_bayar, status_pembayaran)
+                            <strong>UNF_Oishidesu</strong> (id_pesanan, tanggal_pesanan, no_meja, status_pesanan, id_pegawai, nama_pegawai, jabatan, shift, id_pelanggan, nama_pelanggan, no_telepon, alamat, email, {id_menu, nama_menu, deskripsi_menu, id_kategori, nama_kategori, deskripsi_kategori, harga, stok_menu, jumlah, harga_satuan, subtotal, {id_resep, id_bahan, nama_bahan, satuan, stok_bahan, batas_minimum, supplier, takaran}}, total_harga, id_pembayaran, tanggal_pembayaran, metode_pembayaran, jumlah_bayar, status_pembayaran, id_laporan, periode_bulan, total_transaksi_bulanan, total_pendapatan_bulanan, menu_terlaris, tanggal_cetak)
                         </div>
                     </div>
 
@@ -429,10 +466,10 @@
                             <span class="text-xs font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-zinc-800 text-stone-600 dark:text-zinc-400">Tahap 2</span>
                         </div>
                         <p class="text-sm text-stone-600 dark:text-zinc-400">
-                            Menghilangkan seluruh grup berulang sehingga setiap kolom bernilai tunggal (atomik) dengan kunci kandidat gabungan (<code class="font-mono">id_pesanan</code>, <code class="font-mono">id_menu</code>, <code class="font-mono">id_bahan</code>).
+                            Menghilangkan seluruh <em>repeating group</em> sehingga setiap sel bernilai tunggal (atomik) dan menentukan kunci kandidat gabungan (<code class="font-mono">id_pesanan</code>, <code class="font-mono">id_menu</code>, <code class="font-mono">id_bahan</code>).
                         </p>
                         <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 font-mono text-xs text-stone-700 dark:text-zinc-300 leading-relaxed overflow-x-auto">
-                            <strong>Oishidesu_1NF</strong> (<span class="underline decoration-vermilion">id_pesanan</span>, <span class="underline decoration-vermilion">id_menu</span>, <span class="underline decoration-vermilion">id_bahan</span>, tanggal_pesanan, status_pesanan, id_pelanggan, nama_pelanggan, no_telepon, alamat, email, nama_menu, deskripsi_menu, id_kategori, nama_kategori, deskripsi_kategori, harga, stok_menu, jumlah, harga_satuan, subtotal, total_harga, id_pembayaran, tanggal_pembayaran, metode_pembayaran, jumlah_bayar, status_pembayaran, nama_bahan, kategori_bahan, jumlah_stok, satuan, stok_minimum, harga_satuan_bahan, supplier, takaran_pakai, satuan_pakai)
+                            <strong>Oishidesu_1NF</strong> (<span class="underline decoration-vermilion">id_pesanan</span>, <span class="underline decoration-vermilion">id_menu</span>, <span class="underline decoration-vermilion">id_bahan</span>, tanggal_pesanan, no_meja, status_pesanan, id_pegawai, nama_pegawai, jabatan, shift, id_pelanggan, nama_pelanggan, no_telepon, alamat, email, nama_menu, deskripsi_menu, id_kategori, nama_kategori, deskripsi_kategori, harga, stok_menu, jumlah, harga_satuan, subtotal, total_harga, id_pembayaran, tanggal_pembayaran, metode_pembayaran, jumlah_bayar, status_pembayaran, nama_bahan, satuan, stok_bahan, batas_minimum, supplier, takaran)
                         </div>
                     </div>
 
@@ -443,18 +480,18 @@
                             <span class="text-xs font-mono px-2 py-0.5 rounded bg-stone-100 dark:bg-zinc-800 text-stone-600 dark:text-zinc-400">Tahap 3</span>
                         </div>
                         <p class="text-sm text-stone-600 dark:text-zinc-400">
-                            Memisahkan ketergantungan parsial (<em>partial dependency</em>) sehingga atribut yang hanya bergantung pada sebagian kunci utama dipisah menjadi tabel mandiri (<code class="font-mono">MENU_2NF</code>, <code class="font-mono">PESANAN_2NF</code>, <code class="font-mono">BAHAN_BAKU</code>) dan tabel penghubung (<code class="font-mono">DETAIL_PESANAN</code>, <code class="font-mono">RESEP_BAHAN</code>).
+                            Memisahkan ketergantungan parsial (<em>partial dependency</em>) sehingga atribut transaksi utama masuk ke <code class="font-mono">PESANAN_2NF</code> (memuat <code class="font-mono">no_meja</code> dan data kasir), atribut produk ke <code class="font-mono">MENU_2NF</code>, inventori ke <code class="font-mono">BAHAN_BAKU</code>, serta tabel penghubung <code class="font-mono">DETAIL_PESANAN</code> dan <code class="font-mono">RESEP_BAHAN</code>.
                         </p>
                     </div>
 
                     <!-- 3NF -->
                     <div class="p-5 rounded-xl bg-white dark:bg-[#18181b] border border-stone-200 dark:border-zinc-800 space-y-3">
                         <div class="flex items-center justify-between">
-                            <h3 class="font-semibold text-base text-stone-900 dark:text-zinc-100">D. Bentuk Normal Ketiga (3NF — Skema Final 8 Tabel)</h3>
-                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-red-50 dark:bg-red-950/60 text-vermilion dark:text-red-400">Final 8 Tabel</span>
+                            <h3 class="font-semibold text-base text-stone-900 dark:text-zinc-100">D. Bentuk Normal Ketiga (3NF — Skema Final 10 Tabel)</h3>
+                            <span class="text-xs font-mono px-2 py-0.5 rounded bg-red-50 dark:bg-red-950/60 text-vermilion dark:text-red-400">Final 10 Tabel</span>
                         </div>
                         <p class="text-sm text-stone-600 dark:text-zinc-400">
-                            Menghapus ketergantungan transitif (<code class="font-mono">nama_kategori</code> dipisah ke <code class="font-mono">KATEGORI</code>, data pelanggan ke <code class="font-mono">PELANGGAN</code>, dan bukti pembayaran ke <code class="font-mono">PEMBAYARAN</code>). Berikut adalah 8 tabel normal siap implementasi:
+                            Menghapus ketergantungan transitif (<code class="font-mono">nama_pegawai</code>, <code class="font-mono">jabatan</code>, <code class="font-mono">shift</code> dipisahkan ke tabel mandiri <code class="font-mono">PEGAWAI</code>; data pelanggan ke <code class="font-mono">PELANGGAN</code>; kategori ke <code class="font-mono">KATEGORI</code>; pembayaran ke <code class="font-mono">PEMBAYARAN</code>; serta arsip bulanan ke <code class="font-mono">LAPORAN_BULANAN</code>).
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
@@ -466,28 +503,36 @@
                                 <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_menu (PK)</span>, <span class="text-amber-600 dark:text-amber-400">id_kategori (FK)</span>, nama_menu, deskripsi, harga, stok</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">3. PELANGGAN</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">3. PEGAWAI (Kasir, Koki, Manajer)</div>
+                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_pegawai (PK)</span>, nama_pegawai, jabatan, shift, no_telepon</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">4. PELANGGAN</div>
                                 <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_pelanggan (PK)</span>, nama_pelanggan, no_telepon, alamat, email</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">4. PESANAN</div>
-                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_pesanan (PK)</span>, tanggal_pesanan, <span class="text-amber-600 dark:text-amber-400">id_pelanggan (FK)</span>, total_harga, status_pesanan</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">5. PESANAN (+ Nomor Meja &amp; Kasir)</div>
+                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_pesanan (PK)</span>, tanggal_pesanan, <span class="text-amber-600 dark:text-amber-400">id_pelanggan (FK)</span>, <span class="text-amber-600 dark:text-amber-400">id_pegawai (FK)</span>, no_meja, total_harga, status_pesanan</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">5. DETAIL_PESANAN</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">6. DETAIL_PESANAN</div>
                                 <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_detail (PK)</span>, <span class="text-amber-600 dark:text-amber-400">id_pesanan (FK)</span>, <span class="text-amber-600 dark:text-amber-400">id_menu (FK)</span>, jumlah, harga_satuan, subtotal</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">6. PEMBAYARAN</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">7. PEMBAYARAN</div>
                                 <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_pembayaran (PK)</span>, <span class="text-amber-600 dark:text-amber-400">id_pesanan (FK)</span>, tanggal_pembayaran, metode_pembayaran, jumlah_bayar, status_pembayaran</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">7. BAHAN_BAKU</div>
-                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_bahan (PK)</span>, nama_bahan, kategori_bahan, jumlah_stok, satuan, stok_minimum, harga_satuan_bahan, supplier</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">8. BAHAN_BAKU</div>
+                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_bahan (PK)</span>, nama_bahan, satuan, stok_bahan, batas_minimum, supplier</div>
                             </div>
                             <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
-                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">8. RESEP_BAHAN</div>
-                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_resep (PK)</span>, <span class="text-amber-600 dark:text-amber-400">id_menu (FK)</span>, <span class="text-amber-600 dark:text-amber-400">id_bahan (FK)</span>, takaran_pakai, satuan_pakai</div>
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">9. RESEP_BAHAN</div>
+                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_resep (PK)</span>, <span class="text-amber-600 dark:text-amber-400">id_menu (FK)</span>, <span class="text-amber-600 dark:text-amber-400">id_bahan (FK)</span>, takaran</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-stone-50 dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800">
+                                <div class="font-semibold text-stone-900 dark:text-zinc-100 mb-1">10. LAPORAN_BULANAN</div>
+                                <div class="text-stone-600 dark:text-zinc-400"><span class="text-vermilion font-semibold">id_laporan (PK)</span>, periode_bulan, <span class="text-amber-600 dark:text-amber-400">id_pegawai (FK)</span>, total_transaksi, total_pendapatan, menu_terlaris, tanggal_cetak</div>
                             </div>
                         </div>
                     </div>
@@ -500,11 +545,11 @@
                             <span class="font-mono text-sm font-semibold text-vermilion">05.</span>
                             <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-zinc-100">Entity Relationship Diagram (ERD)</h2>
                         </div>
-                        <span class="text-xs font-mono text-stone-500 dark:text-zinc-400">8 Entitas Terintegrasi (POS + Bahan Baku)</span>
+                        <span class="text-xs font-mono text-stone-500 dark:text-zinc-400">10 Entitas Terintegrasi (POS, Pegawai, Bahan Baku &amp; Laporan Bulanan)</span>
                     </div>
 
                     <div class="rounded-xl border border-stone-200 dark:border-zinc-800 bg-white dark:bg-[#18181b] p-3 sm:p-4 overflow-x-auto">
-                        <svg viewBox="0 0 960 760" class="w-full min-w-[780px] h-auto font-mono" role="img" aria-label="Entity Relationship Diagram 8 Entitas Oishidesu!">
+                        <svg viewBox="0 0 980 940" class="w-full min-w-[800px] h-auto font-mono" role="img" aria-label="Entity Relationship Diagram 10 Entitas Oishidesu!">
                             <defs>
                                 <marker id="crows-many" viewBox="0 0 16 16" refX="14" refY="8" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
                                     <path d="M 0 8 L 14 2 M 0 8 L 14 14 M 0 8 L 14 8 M 3 2 L 3 14" stroke="#b91c1c" stroke-width="1.6" fill="none"/>
@@ -520,28 +565,36 @@
                             <text x="285" y="80" text-anchor="middle" font-size="10" fill="#78716c">memiliki</text>
 
                             <!-- MENU (1) -- (M) DETAIL_PESANAN -->
-                            <path d="M 560 95 L 680 95" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
-                            <text x="620" y="85" text-anchor="middle" font-size="10" fill="#78716c">tercatat di</text>
+                            <path d="M 560 95 L 690 95" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
+                            <text x="625" y="85" text-anchor="middle" font-size="10" fill="#78716c">tercatat di</text>
 
                             <!-- MENU (1) -- (M) RESEP_BAHAN -->
                             <path d="M 450 205 L 450 265" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
-                            <text x="495" y="238" text-anchor="middle" font-size="10" fill="#78716c">memakai resep</text>
+                            <text x="498" y="238" text-anchor="middle" font-size="10" fill="#78716c">memakai resep</text>
 
                             <!-- BAHAN_BAKU (1) -- (M) RESEP_BAHAN -->
                             <path d="M 240 340 L 340 340" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
                             <text x="290" y="330" text-anchor="middle" font-size="10" fill="#78716c">dipakai di</text>
 
                             <!-- PELANGGAN (1) -- (M) PESANAN -->
-                            <path d="M 230 575 L 340 575" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
-                            <text x="285" y="565" text-anchor="middle" font-size="10" fill="#78716c">membuat</text>
+                            <path d="M 230 560 L 340 560" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
+                            <text x="285" y="550" text-anchor="middle" font-size="10" fill="#78716c">membuat</text>
+
+                            <!-- PEGAWAI (1) -- (M) PESANAN -->
+                            <path d="M 230 780 L 390 780 L 390 700" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
+                            <text x="310" y="770" text-anchor="middle" font-size="10" fill="#78716c">kasir melayani</text>
+
+                            <!-- PEGAWAI (1) -- (M) LAPORAN_BULANAN -->
+                            <path d="M 230 850 L 690 850" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
+                            <text x="460" y="840" text-anchor="middle" font-size="10" fill="#78716c">manajer mengesahkan</text>
 
                             <!-- PESANAN (1) -- (M) DETAIL_PESANAN -->
-                            <path d="M 560 540 L 795 540 L 795 220" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
-                            <text x="680" y="530" text-anchor="middle" font-size="10" fill="#78716c">memuat rincian</text>
+                            <path d="M 560 530 L 810 530 L 810 220" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-many)"/>
+                            <text x="685" y="520" text-anchor="middle" font-size="10" fill="#78716c">memuat rincian</text>
 
                             <!-- PESANAN (1) -- (1) PEMBAYARAN -->
-                            <path d="M 560 630 L 680 630" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-one)"/>
-                            <text x="620" y="620" text-anchor="middle" font-size="10" fill="#78716c">dibayar (1:1)</text>
+                            <path d="M 560 630 L 690 630" stroke="#b91c1c" stroke-width="1.7" fill="none" marker-start="url(#crows-one)" marker-end="url(#crows-one)"/>
+                            <text x="625" y="620" text-anchor="middle" font-size="10" fill="#78716c">dibayar (1:1)</text>
 
                             <!-- 1. KATEGORI -->
                             <g transform="translate(20, 30)">
@@ -566,8 +619,8 @@
                                 <text x="12" y="150" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    stok</text>
                             </g>
 
-                            <!-- 5. DETAIL_PESANAN -->
-                            <g transform="translate(680, 30)">
+                            <!-- 6. DETAIL_PESANAN -->
+                            <g transform="translate(690, 30)">
                                 <rect width="245" height="190" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 237 0 Q 245 0 245 8 L 245 30 L 0 30 Z" fill="#1c1917"/>
                                 <text x="122" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">DETAIL_PESANAN</text>
@@ -579,34 +632,32 @@
                                 <text x="12" y="150" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    subtotal</text>
                             </g>
 
-                            <!-- 7. BAHAN_BAKU -->
+                            <!-- 8. BAHAN_BAKU -->
                             <g transform="translate(20, 240)">
-                                <rect width="220" height="215" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
+                                <rect width="220" height="185" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 212 0 Q 220 0 220 8 L 220 30 L 0 30 Z" fill="#b91c1c"/>
                                 <text x="110" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">BAHAN_BAKU</text>
                                 <text x="12" y="50" font-size="10.5" fill="#b91c1c" font-weight="bold">PK  id_bahan</text>
                                 <text x="12" y="70" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    nama_bahan</text>
-                                <text x="12" y="90" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    kategori_bahan</text>
-                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    jumlah_stok</text>
-                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    satuan, stok_min</text>
-                                <text x="12" y="150" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    harga_satuan_bahan</text>
-                                <text x="12" y="170" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    supplier</text>
+                                <text x="12" y="90" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    satuan</text>
+                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    stok_bahan</text>
+                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    batas_minimum</text>
+                                <text x="12" y="150" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    supplier</text>
                             </g>
 
-                            <!-- 8. RESEP_BAHAN -->
+                            <!-- 9. RESEP_BAHAN -->
                             <g transform="translate(340, 265)">
-                                <rect width="220" height="165" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
+                                <rect width="220" height="145" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 212 0 Q 220 0 220 8 L 220 30 L 0 30 Z" fill="#1c1917"/>
                                 <text x="110" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">RESEP_BAHAN</text>
                                 <text x="12" y="50" font-size="10.5" fill="#b91c1c" font-weight="bold">PK  id_resep</text>
                                 <text x="12" y="70" font-size="10.5" fill="#d97706" font-weight="bold">FK  id_menu</text>
                                 <text x="12" y="90" font-size="10.5" fill="#d97706" font-weight="bold">FK  id_bahan</text>
-                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    takaran_pakai</text>
-                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    satuan_pakai</text>
+                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    takaran</text>
                             </g>
 
-                            <!-- 3. PELANGGAN -->
-                            <g transform="translate(20, 505)">
+                            <!-- 4. PELANGGAN -->
+                            <g transform="translate(20, 480)">
                                 <rect width="210" height="165" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 202 0 Q 210 0 210 8 L 210 30 L 0 30 Z" fill="#b91c1c"/>
                                 <text x="105" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">PELANGGAN</text>
@@ -617,20 +668,22 @@
                                 <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    email</text>
                             </g>
 
-                            <!-- 4. PESANAN -->
-                            <g transform="translate(340, 505)">
-                                <rect width="220" height="165" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
+                            <!-- 5. PESANAN -->
+                            <g transform="translate(340, 495)">
+                                <rect width="220" height="205" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 212 0 Q 220 0 220 8 L 220 30 L 0 30 Z" fill="#b91c1c"/>
                                 <text x="110" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">PESANAN</text>
                                 <text x="12" y="50" font-size="10.5" fill="#b91c1c" font-weight="bold">PK  id_pesanan</text>
                                 <text x="12" y="70" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    tanggal_pesanan</text>
                                 <text x="12" y="90" font-size="10.5" fill="#d97706" font-weight="bold">FK  id_pelanggan</text>
-                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    total_harga</text>
-                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    status_pesanan</text>
+                                <text x="12" y="110" font-size="10.5" fill="#d97706" font-weight="bold">FK  id_pegawai (Kasir)</text>
+                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    no_meja</text>
+                                <text x="12" y="150" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    total_harga</text>
+                                <text x="12" y="170" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    status_pesanan</text>
                             </g>
 
-                            <!-- 6. PEMBAYARAN -->
-                            <g transform="translate(680, 560)">
+                            <!-- 7. PEMBAYARAN -->
+                            <g transform="translate(690, 560)">
                                 <rect width="245" height="165" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
                                 <path d="M 0 8 Q 0 0 8 0 L 237 0 Q 245 0 245 8 L 245 30 L 0 30 Z" fill="#1c1917"/>
                                 <text x="122" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">PEMBAYARAN</text>
@@ -639,6 +692,30 @@
                                 <text x="12" y="90" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    tanggal_pembayaran</text>
                                 <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    metode_pembayaran</text>
                                 <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    jumlah_bayar, status</text>
+                            </g>
+
+                            <!-- 3. PEGAWAI -->
+                            <g transform="translate(20, 730)">
+                                <rect width="210" height="165" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
+                                <path d="M 0 8 Q 0 0 8 0 L 202 0 Q 210 0 210 8 L 210 30 L 0 30 Z" fill="#b91c1c"/>
+                                <text x="105" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">PEGAWAI</text>
+                                <text x="12" y="50" font-size="10.5" fill="#b91c1c" font-weight="bold">PK  id_pegawai</text>
+                                <text x="12" y="70" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    nama_pegawai</text>
+                                <text x="12" y="90" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    jabatan</text>
+                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    shift</text>
+                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    no_telepon</text>
+                            </g>
+
+                            <!-- 10. LAPORAN_BULANAN -->
+                            <g transform="translate(690, 750)">
+                                <rect width="245" height="175" rx="8" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.5"/>
+                                <path d="M 0 8 Q 0 0 8 0 L 237 0 Q 245 0 245 8 L 245 30 L 0 30 Z" fill="#1c1917"/>
+                                <text x="122" y="19" text-anchor="middle" fill="#ffffff" font-size="11.5" font-weight="bold">LAPORAN_BULANAN</text>
+                                <text x="12" y="50" font-size="10.5" fill="#b91c1c" font-weight="bold">PK  id_laporan</text>
+                                <text x="12" y="70" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    periode_bulan</text>
+                                <text x="12" y="90" font-size="10.5" fill="#d97706" font-weight="bold">FK  id_pegawai (Manajer)</text>
+                                <text x="12" y="110" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    total_transaksi, omzet</text>
+                                <text x="12" y="130" font-size="10.5" class="fill-stone-700 dark:fill-zinc-300">    menu_terlaris, tgl_cetak</text>
                             </g>
                         </svg>
                     </div>
@@ -651,11 +728,11 @@
                             <span class="font-mono text-sm font-semibold text-vermilion">06.</span>
                             <h2 class="text-2xl font-bold tracking-tight text-stone-900 dark:text-zinc-100">Logical Record Structure (LRS)</h2>
                         </div>
-                        <span class="text-xs font-mono text-stone-500 dark:text-zinc-400">Alur Referensi Primary Key ke Foreign Key</span>
+                        <span class="text-xs font-mono text-stone-500 dark:text-zinc-400">Alur Referensi Primary Key ke Foreign Key (10 Tabel)</span>
                     </div>
 
                     <div class="rounded-xl border border-stone-200 dark:border-zinc-800 bg-white dark:bg-[#18181b] p-3 sm:p-4 overflow-x-auto">
-                        <svg viewBox="0 0 960 720" class="w-full min-w-[780px] h-auto font-mono" role="img" aria-label="Logical Record Structure 8 Tabel Oishidesu!">
+                        <svg viewBox="0 0 980 880" class="w-full min-w-[800px] h-auto font-mono" role="img" aria-label="Logical Record Structure 10 Tabel Oishidesu!">
                             <defs>
                                 <marker id="lrs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
                                     <path d="M 0 1 L 10 5 L 0 9 z" fill="#b91c1c"/>
@@ -666,17 +743,21 @@
                             <!-- KATEGORI.id_kategori -> MENU.id_kategori -->
                             <path d="M 245 60 L 295 60 L 295 82 L 335 82" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- MENU.id_menu -> DETAIL_PESANAN.id_menu -->
-                            <path d="M 575 60 L 625 60 L 625 104 L 675 104" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <path d="M 575 60 L 625 60 L 625 104 L 685 104" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- MENU.id_menu -> RESEP_BAHAN.id_menu -->
                             <path d="M 575 60 L 605 60 L 605 292 L 575 292" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- BAHAN_BAKU.id_bahan -> RESEP_BAHAN.id_bahan -->
                             <path d="M 245 270 L 295 270 L 295 314 L 335 314" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- PELANGGAN.id_pelanggan -> PESANAN.id_pelanggan -->
-                            <path d="M 245 510 L 295 510 L 295 554 L 335 554" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <path d="M 245 480 L 295 480 L 295 524 L 335 524" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <!-- PEGAWAI.id_pegawai -> PESANAN.id_pegawai -->
+                            <path d="M 245 690 L 305 690 L 305 546 L 335 546" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <!-- PEGAWAI.id_pegawai -> LAPORAN_BULANAN.id_pegawai -->
+                            <path d="M 245 690 L 285 690 L 285 756 L 685 756" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- PESANAN.id_pesanan -> DETAIL_PESANAN.id_pesanan -->
-                            <path d="M 575 510 L 645 510 L 645 82 L 675 82" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <path d="M 575 480 L 650 480 L 650 82 L 685 82" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
                             <!-- PESANAN.id_pesanan -> PEMBAYARAN.id_pesanan -->
-                            <path d="M 575 510 L 625 510 L 625 532 L 675 532" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
+                            <path d="M 575 480 L 625 480 L 625 502 L 685 502" stroke="#b91c1c" stroke-width="1.6" fill="none" marker-end="url(#lrs-arrow)"/>
 
                             <!-- 1. KATEGORI -->
                             <g transform="translate(20, 20)">
@@ -701,12 +782,12 @@
                                 <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     stok : INT</text>
                             </g>
 
-                            <!-- 5. DETAIL_PESANAN -->
-                            <g transform="translate(680, 20)">
-                                <rect width="250" height="170" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
-                                <rect width="250" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
+                            <!-- 6. DETAIL_PESANAN -->
+                            <g transform="translate(690, 20)">
+                                <rect width="255" height="170" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="255" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">DETAIL_PESANAN</text>
-                                <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_detail : INT (AI)</text>
+                                <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_detail : VARCHAR(15)</text>
                                 <text x="12" y="65" font-size="10" fill="#d97706" font-weight="bold">[FK] id_pesanan : VARCHAR(15)</text>
                                 <text x="12" y="87" font-size="10" fill="#d97706" font-weight="bold">[FK] id_menu : VARCHAR(10)</text>
                                 <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     jumlah : INT</text>
@@ -714,68 +795,93 @@
                                 <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     subtotal : INT</text>
                             </g>
 
-                            <!-- 7. BAHAN_BAKU -->
+                            <!-- 8. BAHAN_BAKU -->
                             <g transform="translate(20, 230)">
-                                <rect width="225" height="210" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="225" height="170" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
                                 <rect width="225" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">BAHAN_BAKU</text>
                                 <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_bahan : VARCHAR(10)</text>
-                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     nama_bahan : VARCHAR(80)</text>
-                                <text x="12" y="87" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     kategori_bahan : VARCHAR(40)</text>
-                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     jumlah_stok : INT</text>
-                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     satuan : VARCHAR(15)</text>
-                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     stok_minimum : INT</text>
-                                <text x="12" y="175" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     harga_satuan_bahan : INT</text>
-                                <text x="12" y="197" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     supplier : VARCHAR(80)</text>
+                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     nama_bahan : VARCHAR(100)</text>
+                                <text x="12" y="87" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     satuan : VARCHAR(20)</text>
+                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     stok_bahan : DECIMAL(10,2)</text>
+                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     batas_minimum : DECIMAL(10,2)</text>
+                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     supplier : VARCHAR(100)</text>
                             </g>
 
-                            <!-- 8. RESEP_BAHAN -->
+                            <!-- 9. RESEP_BAHAN -->
                             <g transform="translate(340, 230)">
-                                <rect width="235" height="150" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="235" height="130" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
                                 <rect width="235" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">RESEP_BAHAN</text>
                                 <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_resep : VARCHAR(10)</text>
                                 <text x="12" y="65" font-size="10" fill="#d97706" font-weight="bold">[FK] id_menu : VARCHAR(10)</text>
                                 <text x="12" y="87" font-size="10" fill="#d97706" font-weight="bold">[FK] id_bahan : VARCHAR(10)</text>
-                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     takaran_pakai : INT</text>
-                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     satuan_pakai : VARCHAR(15)</text>
+                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     takaran : DECIMAL(10,2)</text>
                             </g>
 
-                            <!-- 3. PELANGGAN -->
-                            <g transform="translate(20, 470)">
+                            <!-- 4. PELANGGAN -->
+                            <g transform="translate(20, 440)">
                                 <rect width="225" height="150" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
                                 <rect width="225" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">PELANGGAN</text>
                                 <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_pelanggan : VARCHAR(10)</text>
-                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     nama_pelanggan : VARCHAR(80)</text>
+                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     nama_pelanggan : VARCHAR(100)</text>
                                 <text x="12" y="87" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     no_telepon : VARCHAR(20)</text>
                                 <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     alamat : TEXT</text>
-                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     email : VARCHAR(80)</text>
+                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     email : VARCHAR(100)</text>
                             </g>
 
-                            <!-- 4. PESANAN -->
-                            <g transform="translate(340, 470)">
-                                <rect width="235" height="150" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                            <!-- 5. PESANAN -->
+                            <g transform="translate(340, 440)">
+                                <rect width="235" height="195" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
                                 <rect width="235" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">PESANAN</text>
                                 <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_pesanan : VARCHAR(15)</text>
                                 <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     tanggal_pesanan : DATETIME</text>
                                 <text x="12" y="87" font-size="10" fill="#d97706" font-weight="bold">[FK] id_pelanggan : VARCHAR(10)</text>
-                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     total_harga : INT</text>
-                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     status_pesanan : VARCHAR(25)</text>
+                                <text x="12" y="109" font-size="10" fill="#d97706" font-weight="bold">[FK] id_pegawai : VARCHAR(10)</text>
+                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     no_meja : VARCHAR(10)</text>
+                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     total_harga : INT</text>
+                                <text x="12" y="175" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     status_pesanan : ENUM</text>
                             </g>
 
-                            <!-- 6. PEMBAYARAN -->
-                            <g transform="translate(680, 470)">
-                                <rect width="250" height="170" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
-                                <rect width="250" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
+                            <!-- 7. PEMBAYARAN -->
+                            <g transform="translate(690, 440)">
+                                <rect width="255" height="170" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="255" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
                                 <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">PEMBAYARAN</text>
                                 <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_pembayaran : VARCHAR(15)</text>
                                 <text x="12" y="65" font-size="10" fill="#d97706" font-weight="bold">[FK] id_pesanan : VARCHAR(15)</text>
                                 <text x="12" y="87" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     tanggal_pembayaran : DATETIME</text>
-                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     metode_pembayaran : VARCHAR(25)</text>
+                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     metode_pembayaran : ENUM</text>
                                 <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     jumlah_bayar : INT</text>
-                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     status_pembayaran : VARCHAR(25)</text>
+                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     status_pembayaran : ENUM</text>
+                            </g>
+
+                            <!-- 3. PEGAWAI -->
+                            <g transform="translate(20, 650)">
+                                <rect width="225" height="150" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="225" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
+                                <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">PEGAWAI</text>
+                                <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_pegawai : VARCHAR(10)</text>
+                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     nama_pegawai : VARCHAR(100)</text>
+                                <text x="12" y="87" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     jabatan : ENUM</text>
+                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     shift : ENUM</text>
+                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     no_telepon : VARCHAR(20)</text>
+                            </g>
+
+                            <!-- 10. LAPORAN_BULANAN -->
+                            <g transform="translate(690, 670)">
+                                <rect width="255" height="190" rx="6" class="fill-stone-50 dark:fill-zinc-900 stroke-stone-300 dark:stroke-zinc-700" stroke-width="1.4"/>
+                                <rect width="255" height="26" rx="6" class="fill-stone-800 dark:fill-zinc-800"/>
+                                <text x="12" y="17" fill="#ffffff" font-size="11" font-weight="bold">LAPORAN_BULANAN</text>
+                                <text x="12" y="43" font-size="10" fill="#b91c1c" font-weight="bold">[PK] id_laporan : VARCHAR(15)</text>
+                                <text x="12" y="65" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     periode_bulan : VARCHAR(20)</text>
+                                <text x="12" y="87" font-size="10" fill="#d97706" font-weight="bold">[FK] id_pegawai : VARCHAR(10)</text>
+                                <text x="12" y="109" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     total_transaksi : INT</text>
+                                <text x="12" y="131" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     total_pendapatan : INT</text>
+                                <text x="12" y="153" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     menu_terlaris : VARCHAR(100)</text>
+                                <text x="12" y="175" font-size="10" class="fill-stone-700 dark:fill-zinc-300">     tanggal_cetak : DATE</text>
                             </g>
                         </svg>
                     </div>
@@ -792,7 +898,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between flex-wrap gap-2">
                             <p class="text-sm text-stone-600 dark:text-zinc-400">
-                                Sintaks DDL &amp; DML lengkap untuk <code class="font-mono text-stone-900 dark:text-zinc-200">db_oishidesu</code> mencakup 8 tabel, 21 menu, 12 pelanggan, 12 transaksi pesanan, serta 16 stok bahan baku makanan:
+                                Sintaks DDL &amp; DML lengkap untuk <code class="font-mono text-stone-900 dark:text-zinc-200">db_oishidesu</code> mencakup 10 tabel (<code class="font-mono">kategori</code>, <code class="font-mono">menu</code>, <code class="font-mono">pegawai</code>, <code class="font-mono">pelanggan</code>, <code class="font-mono">pesanan</code> + <code class="font-mono">no_meja</code>, <code class="font-mono">detail_pesanan</code>, <code class="font-mono">pembayaran</code>, <code class="font-mono">bahan_baku</code>, <code class="font-mono">resep_bahan</code>, dan <code class="font-mono">laporan_bulanan</code>):
                             </p>
                             <button id="copySqlBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-medium hover:bg-stone-700 dark:hover:bg-zinc-300 transition-colors">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -804,153 +910,130 @@
 
                         <div class="rounded-xl overflow-hidden border border-stone-200 dark:border-zinc-800 bg-[#18181b] text-zinc-200">
                             <div class="px-4 py-2 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between text-xs font-mono text-zinc-400">
-                                <span>db_oishidesu_lengkap.sql</span>
-                                <span>MySQL / MariaDB (8 Tabel)</span>
+                                <span>db_oishidesu_10_tabel.sql</span>
+                                <span>MySQL / MariaDB (10 Tabel)</span>
                             </div>
                             <pre id="sqlCodeBlock" class="p-4 text-xs font-mono leading-relaxed overflow-x-auto max-h-[420px]"><code>CREATE DATABASE IF NOT EXISTS db_oishidesu;
 USE db_oishidesu;
 
 -- 1. Tabel KATEGORI
-CREATE TABLE KATEGORI (
+CREATE TABLE kategori (
     id_kategori VARCHAR(10) PRIMARY KEY,
     nama_kategori VARCHAR(50) NOT NULL,
     deskripsi TEXT
 );
 
 -- 2. Tabel MENU
-CREATE TABLE MENU (
+CREATE TABLE menu (
     id_menu VARCHAR(10) PRIMARY KEY,
     id_kategori VARCHAR(10) NOT NULL,
     nama_menu VARCHAR(100) NOT NULL,
     deskripsi TEXT,
     harga INT NOT NULL,
     stok INT NOT NULL DEFAULT 0,
-    CONSTRAINT fk_menu_kategori FOREIGN KEY (id_kategori) REFERENCES KATEGORI(id_kategori)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT fk_menu_kategori FOREIGN KEY (id_kategori) REFERENCES kategori(id_kategori)
 );
 
--- 3. Tabel PELANGGAN
-CREATE TABLE PELANGGAN (
+-- 3. Tabel PEGAWAI (Kasir, Koki, Manajer)
+CREATE TABLE pegawai (
+    id_pegawai VARCHAR(10) PRIMARY KEY,
+    nama_pegawai VARCHAR(100) NOT NULL,
+    jabatan ENUM('Kasir', 'Koki', 'Manajer') NOT NULL,
+    shift ENUM('Pagi', 'Malam') NOT NULL,
+    no_telepon VARCHAR(20)
+);
+
+-- 4. Tabel PELANGGAN
+CREATE TABLE pelanggan (
     id_pelanggan VARCHAR(10) PRIMARY KEY,
-    nama_pelanggan VARCHAR(80) NOT NULL,
+    nama_pelanggan VARCHAR(100) NOT NULL,
     no_telepon VARCHAR(20),
     alamat TEXT,
-    email VARCHAR(80)
+    email VARCHAR(100)
 );
 
--- 4. Tabel PESANAN
-CREATE TABLE PESANAN (
+-- 5. Tabel PESANAN (Dilengkapi id_pegawai Kasir & no_meja)
+CREATE TABLE pesanan (
     id_pesanan VARCHAR(15) PRIMARY KEY,
     tanggal_pesanan DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_pelanggan VARCHAR(10) NOT NULL,
+    id_pegawai VARCHAR(10) NOT NULL,
+    no_meja VARCHAR(10) NOT NULL,
     total_harga INT NOT NULL DEFAULT 0,
-    status_pesanan ENUM('Diproses', 'Selesai', 'Dibatalkan') NOT NULL DEFAULT 'Diproses',
-    CONSTRAINT fk_pesanan_pelanggan FOREIGN KEY (id_pelanggan) REFERENCES PELANGGAN(id_pelanggan)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+    status_pesanan ENUM('Diproses Dapur', 'Disajikan', 'Selesai', 'Dibatalkan') NOT NULL,
+    CONSTRAINT fk_pesanan_pelanggan FOREIGN KEY (id_pelanggan) REFERENCES pelanggan(id_pelanggan),
+    CONSTRAINT fk_pesanan_pegawai FOREIGN KEY (id_pegawai) REFERENCES pegawai(id_pegawai)
 );
 
--- 5. Tabel DETAIL_PESANAN
-CREATE TABLE DETAIL_PESANAN (
-    id_detail INT AUTO_INCREMENT PRIMARY KEY,
+-- 6. Tabel DETAIL_PESANAN
+CREATE TABLE detail_pesanan (
+    id_detail VARCHAR(15) PRIMARY KEY,
     id_pesanan VARCHAR(15) NOT NULL,
     id_menu VARCHAR(10) NOT NULL,
     jumlah INT NOT NULL,
     harga_satuan INT NOT NULL,
     subtotal INT NOT NULL,
-    CONSTRAINT fk_detail_pesanan FOREIGN KEY (id_pesanan) REFERENCES PESANAN(id_pesanan)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_detail_menu FOREIGN KEY (id_menu) REFERENCES MENU(id_menu)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+    CONSTRAINT fk_detail_pesanan FOREIGN KEY (id_pesanan) REFERENCES pesanan(id_pesanan),
+    CONSTRAINT fk_detail_menu FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
 );
 
--- 6. Tabel PEMBAYARAN
-CREATE TABLE PEMBAYARAN (
+-- 7. Tabel PEMBAYARAN
+CREATE TABLE pembayaran (
     id_pembayaran VARCHAR(15) PRIMARY KEY,
     id_pesanan VARCHAR(15) NOT NULL UNIQUE,
     tanggal_pembayaran DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     metode_pembayaran ENUM('Tunai', 'QRIS', 'Transfer') NOT NULL,
     jumlah_bayar INT NOT NULL,
-    status_pembayaran ENUM('Lunas', 'Menunggu', 'Gagal') NOT NULL DEFAULT 'Lunas',
-    CONSTRAINT fk_pembayaran_pesanan FOREIGN KEY (id_pesanan) REFERENCES PESANAN(id_pesanan)
-        ON UPDATE CASCADE ON DELETE CASCADE
+    status_pembayaran ENUM('Lunas', 'Menunggu', 'Gagal') NOT NULL,
+    CONSTRAINT fk_pembayaran_pesanan FOREIGN KEY (id_pesanan) REFERENCES pesanan(id_pesanan)
 );
 
--- 7. Tabel BAHAN_BAKU (Inventori Bahan Makanan Dapur)
-CREATE TABLE BAHAN_BAKU (
+-- 8. Tabel BAHAN_BAKU
+CREATE TABLE bahan_baku (
     id_bahan VARCHAR(10) PRIMARY KEY,
-    nama_bahan VARCHAR(80) NOT NULL,
-    kategori_bahan VARCHAR(40) NOT NULL,
-    jumlah_stok INT NOT NULL DEFAULT 0,
-    satuan VARCHAR(15) NOT NULL,
-    stok_minimum INT NOT NULL DEFAULT 0,
-    harga_satuan_bahan INT NOT NULL,
-    supplier VARCHAR(80)
+    nama_bahan VARCHAR(100) NOT NULL,
+    satuan VARCHAR(20) NOT NULL,
+    stok_bahan DECIMAL(10,2) NOT NULL DEFAULT 0,
+    batas_minimum DECIMAL(10,2) NOT NULL DEFAULT 0,
+    supplier VARCHAR(100)
 );
 
--- 8. Tabel RESEP_BAHAN (Komposisi Bahan per Menu)
-CREATE TABLE RESEP_BAHAN (
+-- 9. Tabel RESEP_BAHAN
+CREATE TABLE resep_bahan (
     id_resep VARCHAR(10) PRIMARY KEY,
     id_menu VARCHAR(10) NOT NULL,
     id_bahan VARCHAR(10) NOT NULL,
-    takaran_pakai INT NOT NULL,
-    satuan_pakai VARCHAR(15) NOT NULL,
-    CONSTRAINT fk_resep_menu FOREIGN KEY (id_menu) REFERENCES MENU(id_menu)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_resep_bahan FOREIGN KEY (id_bahan) REFERENCES BAHAN_BAKU(id_bahan)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+    takaran DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_resep_menu FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+    CONSTRAINT fk_resep_bahan FOREIGN KEY (id_bahan) REFERENCES bahan_baku(id_bahan)
 );
 
--- INSERT DATA KATEGORI (6 Kategori)
-INSERT INTO KATEGORI VALUES
-('KAT-01', 'Sushi', 'Nasi gulung dan nigiri khas Jepang dengan isian ikan segar'),
-('KAT-02', 'Ramen', 'Mie kuah kaldu Jepang autentik dengan berbagai pilihan topping'),
-('KAT-03', 'Donburi', 'Nasi mangkuk Jepang dengan lauk daging dan saus gurih'),
-('KAT-04', 'Appetizer', 'Hidangan pembuka dan gorengan ringan khas Jepang'),
-('KAT-05', 'Dessert', 'Makanan penutup manis khas Jepang'),
-('KAT-06', 'Minuman', 'Minuman teh hijau tradisional dan aneka penyegar');
+-- 10. Tabel LAPORAN_BULANAN (Arsip Rekap Akhir Bulan)
+CREATE TABLE laporan_bulanan (
+    id_laporan VARCHAR(15) PRIMARY KEY,
+    periode_bulan VARCHAR(20) NOT NULL,
+    id_pegawai VARCHAR(10) NOT NULL,
+    total_transaksi INT NOT NULL,
+    total_pendapatan INT NOT NULL,
+    menu_terlaris VARCHAR(100),
+    tanggal_cetak DATE NOT NULL,
+    CONSTRAINT fk_laporan_pegawai FOREIGN KEY (id_pegawai) REFERENCES pegawai(id_pegawai)
+);
 
--- INSERT DATA MENU (21 Menu Lengkap)
-INSERT INTO MENU VALUES
-('MNU-001', 'KAT-02', 'Tori Paitan Ramen', 'Kuah kaldu ayam kental gurih dengan chashu ayam & ajitama', 38000, 25),
-('MNU-002', 'KAT-02', 'Spicy Miso Ramen', 'Kaldu miso pedas gurih dengan daging ayam cincang & jagung manis', 40000, 22),
-('MNU-003', 'KAT-02', 'Shoyu Chashu Ramen', 'Kuah kecap asin Jepang bening klasik dengan irisan chashu panggang', 36000, 20),
-('MNU-004', 'KAT-02', 'Black Garlic Tonkotsu Ramen', 'Ramen kaldu gurih dengan aroma minyak bawang putih hitam', 43000, 18),
-('MNU-005', 'KAT-01', 'Salmon Mentai Roll', 'Sushi gulung isi salmon panggang saus mentai creamy (8 pcs)', 32000, 24),
-('MNU-006', 'KAT-01', 'Dragon Roll', 'Sushi gulung isi udang tempura dengan topping alpukat & unagi sauce', 36000, 18),
-('MNU-007', 'KAT-01', 'Volcano Spicy Tuna Roll', 'Sushi gulung tuna pedas panggang dengan taburan tobiko', 34000, 20),
-('MNU-008', 'KAT-01', 'California Roll', 'Sushi klasik isi crabstick, timun Jepang, alpukat & wijen sangrai', 28000, 25),
-('MNU-009', 'KAT-01', 'Aburi Salmon Nigiri', 'Nasi kepal sushi dengan irisan salmon bakar setengah matang (4 pcs)', 30000, 20),
-('MNU-010', 'KAT-03', 'Chicken Katsu Don', 'Nasi hangat dengan ayam katsu renyah dan siraman saus donburi', 35000, 22),
-('MNU-011', 'KAT-03', 'Beef Gyudon', 'Nasi mangkuk Jepang dengan irisan daging sapi US slice & bawang bombay', 42000, 19),
-('MNU-012', 'KAT-03', 'Chicken Teriyaki Don', 'Nasi Jepang dengan ayam panggang saus teriyaki manis gurih', 34000, 24),
-('MNU-013', 'KAT-04', 'Chicken Gyoza', 'Pangsit ayam panggang khas Jepang isi 5 pcs dengan saus shoyu', 22000, 30),
-('MNU-014', 'KAT-04', 'Takoyaki Octopus', 'Bola-bola adonan gurih isi potongan gurita & katsuobushi (6 pcs)', 24000, 28),
-('MNU-015', 'KAT-04', 'Chicken Karaage', 'Ayam goreng tepung khas Jepang renyah dengan saus mayo', 25000, 26),
-('MNU-016', 'KAT-04', 'Edamame Sea Salt', 'Kacang kedelai Jepang rebus hangat dengan taburan garam laut', 15000, 35),
-('MNU-017', 'KAT-05', 'Matcha Ogura Mochi', 'Mochi lembut isi pasta kacang merah dengan taburan matcha Uji', 18000, 25),
-('MNU-018', 'KAT-05', 'Dorayaki Red Bean', 'Panekuk lembut khas Jepang dengan isian selai kacang merah manis', 16000, 22),
-('MNU-019', 'KAT-06', 'Cold Ocha', 'Teh hijau Jepang dingin bebas gula (free refill)', 8000, 60),
-('MNU-020', 'KAT-06', 'Iced Uji Matcha Latte', 'Minuman matcha premium Jepang dengan susu segar dingin', 22000, 30),
-('MNU-021', 'KAT-06', 'Yuzu Honey Fizz', 'Minuman soda segar dengan sari jeruk yuzu Jepang dan madu', 20000, 28);
+-- INSERT DATA PEGAWAI (6 Pegawai)
+INSERT INTO pegawai VALUES
+('PEG01', 'Hana Takahashi', 'Kasir', 'Pagi', '081277001101'),
+('PEG02', 'Budi Santoso', 'Kasir', 'Malam', '081277001102'),
+('PEG03', 'Rina Amelia', 'Kasir', 'Pagi', '081277001103'),
+('PEG04', 'Chef Daiki Tanaka', 'Koki', 'Pagi', '081277001104'),
+('PEG05', 'Kenji Sato', 'Manajer', 'Pagi', '081277001105'),
+('PEG06', 'Chef Agung Wijaya', 'Koki', 'Malam', '081277001106');
 
--- INSERT DATA BAHAN_BAKU (16 Bahan Makanan Dapur)
-INSERT INTO BAHAN_BAKU VALUES
-('BHN-001', 'Mie Ramen Basah', 'Karbohidrat', 60, 'porsi', 15, 4500, 'PT Nippon Noodle Indonesia'),
-('BHN-002', 'Ikan Salmon Fillet Segar', 'Protein Laut', 4500, 'gram', 1000, 280, 'PT Segar Laut Nusantara'),
-('BHN-003', 'Beras Jepang Japonica', 'Karbohidrat', 25000, 'gram', 5000, 28, 'CV Padi Makmur Jaya'),
-('BHN-004', 'Rumput Laut Nori Sheet', 'Bahan Kering', 120, 'lembar', 30, 1800, 'Toko Bahan Jepang Sakura'),
-('BHN-005', 'Kaldu Ayam Paitan Pekat', 'Bumbu & Kuah', 15000, 'ml', 3000, 25, 'Dapur Sentral Oishidesu'),
-('BHN-006', 'Pasta Miso Putih Jepang', 'Bumbu & Kuah', 3500, 'gram', 800, 85, 'Toko Bahan Jepang Sakura'),
-('BHN-007', 'Daging Sapi US Shortplate', 'Protein Daging', 4000, 'gram', 1000, 145, 'PT Prima Daging Utama'),
-('BHN-008', 'Dada Ayam Fillet', 'Protein Daging', 6000, 'gram', 1500, 55, 'CV Unggas Segar Jakarta'),
-('BHN-009', 'Saus Mentai Spesial', 'Saus & Topping', 520, 'gram', 500, 95, 'Toko Bahan Jepang Sakura'),
-('BHN-010', 'Kecap Asin Shoyu Jepang', 'Bumbu & Kuah', 5000, 'ml', 1000, 40, 'Toko Bahan Jepang Sakura'),
-('BHN-011', 'Tepung Roti Panko', 'Bahan Kering', 4000, 'gram', 1000, 32, 'PT Boga Sari Makmur'),
-('BHN-012', 'Telur Ayam Omega', 'Protein', 90, 'butir', 24, 2800, 'Peternakan Sehat Bogor'),
-('BHN-013', 'Kulit Gyoza Siap Pakai', 'Bahan Kering', 150, 'lembar', 40, 600, 'PT Nippon Noodle Indonesia'),
-('BHN-014', 'Potongan Gurita Rebus', 'Protein Laut', 2500, 'gram', 600, 160, 'PT Segar Laut Nusantara'),
-('BHN-015', 'Bubuk Matcha Uji Premium', 'Dessert & Minuman', 1200, 'gram', 300, 350, 'Kyoto Matcha Supply ID'),
-('BHN-016', 'Daun Teh Hijau Ocha', 'Dessert & Minuman', 2000, 'gram', 400, 120, 'Kyoto Matcha Supply ID');</code></pre>
+-- INSERT DATA LAPORAN_BULANAN
+INSERT INTO laporan_bulanan VALUES
+('LAP-2026-09', 'September 2026', 'PEG05', 312, 28450000, 'Tori Paitan Ramen', '2026-10-01'),
+('LAP-2026-10', 'Oktober 2026', 'PEG05', 348, 31920000, 'Salmon Mentai Roll', '2026-11-01'),
+('LAP-2026-11', 'November 2026', 'PEG05', 12, 1192000, 'Salmon Mentai Roll', '2026-11-23');</code></pre>
                         </div>
                     </div>
 
@@ -958,8 +1041,8 @@ INSERT INTO BAHAN_BAKU VALUES
                     <div class="rounded-2xl border border-stone-200 dark:border-zinc-800 bg-white dark:bg-[#18181b] p-5 sm:p-6 shadow-sm space-y-6">
                         <div class="border-b border-stone-200 dark:border-zinc-800 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <div>
-                                <div class="text-xs font-mono text-vermilion uppercase tracking-wider mb-1">Live Database Explorer (8 Tabel)</div>
-                                <h3 class="text-lg font-bold text-stone-900 dark:text-zinc-100">Isi Tabel Lengkap &amp; Simulasi Transaksi Kasir + Bahan Dapur</h3>
+                                <div class="text-xs font-mono text-vermilion uppercase tracking-wider mb-1">Live Database Explorer (10 Tabel)</div>
+                                <h3 class="text-lg font-bold text-stone-900 dark:text-zinc-100">Isi Tabel Lengkap &amp; Simulasi Kasir, Nomor Meja, Bahan Dapur, serta Laporan Bulanan</h3>
                             </div>
                             <button id="resetDbBtn" type="button" class="self-start sm:self-auto text-xs font-mono px-2.5 py-1.5 rounded-lg border border-stone-200 dark:border-zinc-700 text-stone-600 dark:text-zinc-300 hover:bg-stone-100 dark:hover:bg-zinc-800 transition-colors">
                                 Reset Data Awal
@@ -969,33 +1052,35 @@ INSERT INTO BAHAN_BAKU VALUES
                         <!-- Ringkasan Laporan Pemilik -->
                         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
                             <div class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-900 border border-stone-200/80 dark:border-zinc-800">
-                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Laporan Transaksi</div>
+                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Transaksi Bulan Ini</div>
                                 <div id="statTransaksi" class="text-base font-bold font-mono text-stone-900 dark:text-zinc-100 mt-0.5">12 Transaksi</div>
                             </div>
                             <div class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-900 border border-stone-200/80 dark:border-zinc-800">
-                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Total Pendapatan</div>
+                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Pendapatan Lunas (Nov)</div>
                                 <div id="statPendapatan" class="text-base font-bold font-mono text-vermilion dark:text-red-400 mt-0.5">Rp 0</div>
                             </div>
                             <div class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-900 border border-stone-200/80 dark:border-zinc-800">
-                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Menu Terjual</div>
+                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Menu Terjual (Nov)</div>
                                 <div id="statTerjual" class="text-base font-bold font-mono text-stone-900 dark:text-zinc-100 mt-0.5">0 Porsi</div>
                             </div>
                             <div class="p-3 rounded-xl bg-stone-50 dark:bg-zinc-900 border border-stone-200/80 dark:border-zinc-800">
-                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Bahan Mendekati Min.</div>
-                                <div id="statBahanAlert" class="text-base font-bold font-mono text-amber-600 dark:text-amber-400 mt-0.5">1 Bahan</div>
+                                <div class="text-[11px] font-mono text-stone-500 dark:text-zinc-400">Kasir Aktif &amp; Bahan</div>
+                                <div id="statBahanAlert" class="text-base font-bold font-mono text-amber-600 dark:text-amber-400 mt-0.5">3 Kasir · 0 Min</div>
                             </div>
                         </div>
 
-                        <!-- Tab Pilihan 8 Tabel -->
+                        <!-- Tab Pilihan 10 Tabel -->
                         <div class="flex flex-wrap gap-1.5" id="tableTabs">
-                            <button data-table="KATEGORI" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-vermilion text-white transition-colors">KATEGORI (6)</button>
-                            <button data-table="MENU" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">MENU (21)</button>
-                            <button data-table="PELANGGAN" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PELANGGAN (12)</button>
-                            <button data-table="PESANAN" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PESANAN (12)</button>
-                            <button data-table="DETAIL_PESANAN" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">DETAIL_PESANAN</button>
-                            <button data-table="PEMBAYARAN" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PEMBAYARAN (12)</button>
-                            <button data-table="BAHAN_BAKU" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">BAHAN_BAKU (16)</button>
-                            <button data-table="RESEP_BAHAN" class="db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">RESEP_BAHAN</button>
+                            <button data-table="KATEGORI" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">KATEGORI (6)</button>
+                            <button data-table="MENU" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">MENU (21)</button>
+                            <button data-table="PEGAWAI" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PEGAWAI (6)</button>
+                            <button data-table="PELANGGAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PELANGGAN (12)</button>
+                            <button data-table="PESANAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-vermilion text-white transition-colors">PESANAN (12)</button>
+                            <button data-table="DETAIL_PESANAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">DETAIL_PESANAN</button>
+                            <button data-table="PEMBAYARAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">PEMBAYARAN (12)</button>
+                            <button data-table="BAHAN_BAKU" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">BAHAN_BAKU (16)</button>
+                            <button data-table="RESEP_BAHAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">RESEP_BAHAN</button>
+                            <button data-table="LAPORAN_BULANAN" class="db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 transition-colors">LAPORAN_BULANAN (3)</button>
                         </div>
 
                         <!-- Info Key Tabel Aktif -->
@@ -1012,13 +1097,32 @@ INSERT INTO BAHAN_BAKU VALUES
                         <!-- Form Simulasi Input Transaksi Baru -->
                         <div class="pt-4 border-t border-stone-200 dark:border-zinc-800 space-y-4">
                             <div>
-                                <h4 class="text-sm font-semibold text-stone-900 dark:text-zinc-100">Uji Integrasi POS &amp; Pemotongan Stok Bahan Dapur</h4>
+                                <h4 class="text-sm font-semibold text-stone-900 dark:text-zinc-100">Uji Integrasi Kasir, Nomor Meja, Stok Bahan &amp; Laporan Bulanan</h4>
                                 <p class="text-xs text-stone-500 dark:text-zinc-400 mt-0.5">
-                                    Saat transaksi baru disimpan, sistem otomatis mengisi <code class="font-mono">PESANAN</code>, <code class="font-mono">DETAIL_PESANAN</code>, <code class="font-mono">PEMBAYARAN</code>, mengurangi stok <code class="font-mono">MENU</code>, dan memotong stok <code class="font-mono">BAHAN_BAKU</code> sesuai takaran pada <code class="font-mono">RESEP_BAHAN</code>.
+                                    Saat kasir menyimpan transaksi baru beserta nomor meja, sistem mengisi <code class="font-mono">PESANAN</code>, <code class="font-mono">DETAIL_PESANAN</code>, <code class="font-mono">PEMBAYARAN</code>, memotong stok <code class="font-mono">MENU</code> &amp; <code class="font-mono">BAHAN_BAKU</code>, serta memperbarui arsip <code class="font-mono">LAPORAN_BULANAN</code>.
                                 </p>
                             </div>
 
-                            <form id="simOrderForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                            <form id="simOrderForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                                <div>
+                                    <label class="block font-mono text-stone-600 dark:text-zinc-400 mb-1">Kasir Bertugas (FK)</label>
+                                    <select id="inputKasir" class="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-stone-900 dark:text-zinc-100 focus:outline-none focus:border-vermilion"></select>
+                                </div>
+
+                                <div>
+                                    <label class="block font-mono text-stone-600 dark:text-zinc-400 mb-1">Nomor Meja</label>
+                                    <select id="inputMeja" class="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-stone-900 dark:text-zinc-100 focus:outline-none focus:border-vermilion">
+                                        <option value="M01">M01 — Meja 01 (Window)</option>
+                                        <option value="M02">M02 — Meja 02 (Window)</option>
+                                        <option value="M03">M03 — Meja 03 (Tengah)</option>
+                                        <option value="M04">M04 — Meja 04 (Tengah)</option>
+                                        <option value="M05">M05 — Meja 05 (Tatami)</option>
+                                        <option value="M06">M06 — Meja 06 (Tatami)</option>
+                                        <option value="M07">M07 — Meja 07 (Bar Ramen)</option>
+                                        <option value="M08">M08 — Meja 08 (Bar Sushi)</option>
+                                    </select>
+                                </div>
+
                                 <div>
                                     <label class="block font-mono text-stone-600 dark:text-zinc-400 mb-1">Pelanggan (FK)</label>
                                     <select id="inputPelanggan" class="w-full px-3 py-2 rounded-lg border border-stone-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-stone-900 dark:text-zinc-100 focus:outline-none focus:border-vermilion"></select>
@@ -1043,10 +1147,10 @@ INSERT INTO BAHAN_BAKU VALUES
                                     </select>
                                 </div>
 
-                                <div class="sm:col-span-2 lg:col-span-4 flex flex-wrap items-center justify-between gap-3 pt-1">
+                                <div class="sm:col-span-2 lg:col-span-3 flex flex-wrap items-center justify-between gap-3 pt-1">
                                     <div id="simFeedback" class="text-xs font-mono text-emerald-700 dark:text-emerald-400"></div>
                                     <button type="submit" class="px-4 py-2 rounded-lg bg-vermilion hover:bg-vermilion-dark text-white font-medium text-xs transition-colors">
-                                        Simpan Transaksi &amp; Potong Stok Bahan
+                                        Simpan Transaksi &amp; Update Laporan Bulanan
                                     </button>
                                 </div>
                             </form>
@@ -1062,7 +1166,7 @@ INSERT INTO BAHAN_BAKU VALUES
     <footer class="border-t border-stone-200 dark:border-zinc-800 py-8 mt-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 dark:text-zinc-400">
             <div>Dokumentasi Tugas Sistem Basis Data — <strong>RamenXsushi-Oishidesu</strong></div>
-            <div class="font-mono">8 Tabel 3NF: KATEGORI · MENU · PELANGGAN · PESANAN · DETAIL_PESANAN · PEMBAYARAN · BAHAN_BAKU · RESEP_BAHAN</div>
+            <div class="font-mono">10 Tabel 3NF: KATEGORI · MENU · PEGAWAI · PELANGGAN · PESANAN · DETAIL_PESANAN · PEMBAYARAN · BAHAN_BAKU · RESEP_BAHAN · LAPORAN_BULANAN</div>
         </div>
     </footer>
 
@@ -1102,171 +1206,188 @@ INSERT INTO BAHAN_BAKU VALUES
             document.body.removeChild(textArea);
         });
 
-        // 3. Database Lengkap: 8 Tabel (6 Kategori, 21 Menu, 12 Pelanggan, 12 Pesanan, Detail, Pembayaran, 16 Bahan Baku, Resep Bahan)
+        // 3. Database Lengkap: 10 Tabel Terintegrasi
         const initialDatabase = () => ({
             KATEGORI: [
-                { id_kategori: 'KAT-01', nama_kategori: 'Sushi', deskripsi: 'Nasi gulung dan nigiri khas Jepang dengan isian ikan segar' },
-                { id_kategori: 'KAT-02', nama_kategori: 'Ramen', deskripsi: 'Mie kuah kaldu Jepang autentik dengan berbagai pilihan topping' },
-                { id_kategori: 'KAT-03', nama_kategori: 'Donburi', deskripsi: 'Nasi mangkuk Jepang dengan lauk daging dan saus gurih' },
-                { id_kategori: 'KAT-04', nama_kategori: 'Appetizer', deskripsi: 'Hidangan pembuka dan gorengan ringan khas Jepang' },
-                { id_kategori: 'KAT-05', nama_kategori: 'Dessert', deskripsi: 'Makanan penutup manis khas Jepang' },
-                { id_kategori: 'KAT-06', nama_kategori: 'Minuman', deskripsi: 'Minuman teh hijau tradisional dan aneka penyegar' }
+                { id_kategori: 'KAT01', nama_kategori: 'Sushi', deskripsi: 'Aneka nigiri, maki roll, dan fusion sushi segar' },
+                { id_kategori: 'KAT02', nama_kategori: 'Ramen', deskripsi: 'Mie kuah kaldu Jepang autentik rebusan 8 jam' },
+                { id_kategori: 'KAT03', nama_kategori: 'Donburi', deskripsi: 'Nasi mangkuk Jepang hangat dengan aneka lauk' },
+                { id_kategori: 'KAT04', nama_kategori: 'Appetizer', deskripsi: 'Hidangan pembuka goreng dan kukus khas Jepang' },
+                { id_kategori: 'KAT05', nama_kategori: 'Dessert', deskripsi: 'Hidangan penutup manis khas Jepang' },
+                { id_kategori: 'KAT06', nama_kategori: 'Minuman', deskripsi: 'Ocha dingin/panas, matcha latte, dan minuman segar' }
             ],
             MENU: [
-                { id_menu: 'MNU-001', id_kategori: 'KAT-02', nama_menu: 'Tori Paitan Ramen', deskripsi: 'Kuah kaldu ayam kental gurih dengan chashu ayam & ajitama', harga: 38000, stok: 25 },
-                { id_menu: 'MNU-002', id_kategori: 'KAT-02', nama_menu: 'Spicy Miso Ramen', deskripsi: 'Kaldu miso pedas gurih dengan ayam cincang & jagung manis', harga: 40000, stok: 22 },
-                { id_menu: 'MNU-003', id_kategori: 'KAT-02', nama_menu: 'Shoyu Chashu Ramen', deskripsi: 'Kuah kecap asin Jepang bening klasik dengan chashu panggang', harga: 36000, stok: 20 },
-                { id_menu: 'MNU-004', id_kategori: 'KAT-02', nama_menu: 'Black Garlic Ramen', deskripsi: 'Ramen kaldu gurih dengan minyak bawang putih hitam', harga: 43000, stok: 18 },
-                { id_menu: 'MNU-005', id_kategori: 'KAT-01', nama_menu: 'Salmon Mentai Roll', deskripsi: 'Sushi gulung salmon panggang saus mentai creamy (8 pcs)', harga: 32000, stok: 24 },
-                { id_menu: 'MNU-006', id_kategori: 'KAT-01', nama_menu: 'Dragon Roll', deskripsi: 'Sushi gulung udang tempura dengan alpukat & saus unagi', harga: 36000, stok: 18 },
-                { id_menu: 'MNU-007', id_kategori: 'KAT-01', nama_menu: 'Volcano Spicy Tuna Roll', deskripsi: 'Sushi tuna pedas panggang dengan taburan tobiko', harga: 34000, stok: 20 },
-                { id_menu: 'MNU-008', id_kategori: 'KAT-01', nama_menu: 'California Roll', deskripsi: 'Sushi klasik crabstick, timun Jepang, alpukat & wijen', harga: 28000, stok: 25 },
-                { id_menu: 'MNU-009', id_kategori: 'KAT-01', nama_menu: 'Aburi Salmon Nigiri', deskripsi: 'Nasi kepal sushi dengan irisan salmon bakar (4 pcs)', harga: 30000, stok: 20 },
-                { id_menu: 'MNU-010', id_kategori: 'KAT-03', nama_menu: 'Chicken Katsu Don', deskripsi: 'Nasi hangat dengan ayam katsu renyah & saus donburi', harga: 35000, stok: 22 },
-                { id_menu: 'MNU-011', id_kategori: 'KAT-03', nama_menu: 'Beef Gyudon', deskripsi: 'Nasi mangkuk Jepang dengan irisan daging sapi US slice', harga: 42000, stok: 19 },
-                { id_menu: 'MNU-012', id_kategori: 'KAT-03', nama_menu: 'Chicken Teriyaki Don', deskripsi: 'Nasi Jepang dengan ayam panggang saus teriyaki gurih', harga: 34000, stok: 24 },
-                { id_menu: 'MNU-013', id_kategori: 'KAT-04', nama_menu: 'Chicken Gyoza', deskripsi: 'Pangsit ayam panggang isi 5 pcs dengan saus shoyu', harga: 22000, stok: 30 },
-                { id_menu: 'MNU-014', id_kategori: 'KAT-04', nama_menu: 'Takoyaki Octopus', deskripsi: 'Bola adonan gurih isi potongan gurita & katsuobushi (6 pcs)', harga: 24000, stok: 28 },
-                { id_menu: 'MNU-015', id_kategori: 'KAT-04', nama_menu: 'Chicken Karaage', deskripsi: 'Ayam goreng tepung khas Jepang dengan saus mayo', harga: 25000, stok: 26 },
-                { id_menu: 'MNU-016', id_kategori: 'KAT-04', nama_menu: 'Edamame Sea Salt', deskripsi: 'Kacang kedelai Jepang rebus dengan garam laut', harga: 15000, stok: 35 },
-                { id_menu: 'MNU-017', id_kategori: 'KAT-05', nama_menu: 'Matcha Ogura Mochi', deskripsi: 'Mochi isi pasta kacang merah dengan taburan matcha Uji', harga: 18000, stok: 25 },
-                { id_menu: 'MNU-018', id_kategori: 'KAT-05', nama_menu: 'Dorayaki Red Bean', deskripsi: 'Panekuk lembut khas Jepang isi selai kacang merah', harga: 16000, stok: 22 },
-                { id_menu: 'MNU-019', id_kategori: 'KAT-06', nama_menu: 'Cold Ocha', deskripsi: 'Teh hijau Jepang dingin bebas gula (free refill)', harga: 8000, stok: 60 },
-                { id_menu: 'MNU-020', id_kategori: 'KAT-06', nama_menu: 'Iced Uji Matcha Latte', deskripsi: 'Minuman matcha premium Jepang dengan susu segar dingin', harga: 22000, stok: 30 },
-                { id_menu: 'MNU-021', id_kategori: 'KAT-06', nama_menu: 'Yuzu Honey Fizz', deskripsi: 'Minuman soda segar dengan sari jeruk yuzu Jepang & madu', harga: 20000, stok: 28 }
+                { id_menu: 'MNU01', id_kategori: 'KAT01', nama_menu: 'Salmon Mentai Roll', deskripsi: 'Sushi roll isi salmon & timun dengan saus mentai bakar', harga: 38000, stok: 24 },
+                { id_menu: 'MNU02', id_kategori: 'KAT01', nama_menu: 'Dragon Unagi Roll', deskripsi: 'Sushi roll udang tempura dengan topping belut kabayaki', harga: 45000, stok: 15 },
+                { id_menu: 'MNU03', id_kategori: 'KAT01', nama_menu: 'Spicy Tuna Maki', deskripsi: 'Nori roll isi daging tuna cincang saus pedas wijen', harga: 32000, stok: 20 },
+                { id_menu: 'MNU04', id_kategori: 'KAT01', nama_menu: 'California Crunchy Roll', deskripsi: 'Roll crabstick, alpukat, tobiko dengan remah tempura', harga: 30000, stok: 25 },
+                { id_menu: 'MNU05', id_kategori: 'KAT01', nama_menu: 'Aburi Salmon Nigiri (2 pcs)', deskripsi: 'Nasi kepal dengan irisan salmon bakar saus teriyaki', harga: 28000, stok: 18 },
+                { id_menu: 'MNU06', id_kategori: 'KAT02', nama_menu: 'Tori Paitan Ramen', deskripsi: 'Ramen kuah kaldu ayam kental, chashu ayam, ajitsuke tamago', harga: 42000, stok: 20 },
+                { id_menu: 'MNU07', id_kategori: 'KAT02', nama_menu: 'Spicy Miso Ramen', deskripsi: 'Ramen kuah pasta miso pedas dengan daging ayam cincang & jagung', harga: 44000, stok: 18 },
+                { id_menu: 'MNU08', id_kategori: 'KAT02', nama_menu: 'Shoyu Classic Ramen', deskripsi: 'Ramen kuah kecap asin Jepang bening gurih dengan narutomaki', harga: 38000, stok: 22 },
+                { id_menu: 'MNU09', id_kategori: 'KAT02', nama_menu: 'Black Garlic Tonkotsu-Style', deskripsi: 'Ramen kaldu gurih dengan minyak bawang putih hitam aromatik', harga: 46000, stok: 14 },
+                { id_menu: 'MNU10', id_kategori: 'KAT03', nama_menu: 'Beef Yakiniku Don', deskripsi: 'Nasi Jepang dengan irisan daging sapi tipis saus yakiniku manis gurih', harga: 40000, stok: 16 },
+                { id_menu: 'MNU11', id_kategori: 'KAT03', nama_menu: 'Chicken Katsu Curry Don', deskripsi: 'Nasi hangat dengan ayam katsu renyah dan kuah kari Jepang kental', harga: 39000, stok: 19 },
+                { id_menu: 'MNU12', id_kategori: 'KAT03', nama_menu: 'Salmon Teriyaki Don', deskripsi: 'Fillet salmon panggang saus teriyaki di atas nasi pulen', harga: 48000, stok: 12 },
+                { id_menu: 'MNU13', id_kategori: 'KAT03', nama_menu: 'Oyako Don', deskripsi: 'Nasi mangkuk dengan ayam suwir dimasak telur setengah matang', harga: 35000, stok: 17 },
+                { id_menu: 'MNU14', id_kategori: 'KAT04', nama_menu: 'Chicken Gyoza (5 pcs)', deskripsi: 'Pangsit ayam panggang isi ayam cincang & kucai dengan saus ponzu', harga: 24000, stok: 30 },
+                { id_menu: 'MNU15', id_kategori: 'KAT04', nama_menu: 'Takoyaki Octopus (6 pcs)', deskripsi: 'Bola adonan isi gurita dengan saus takoyaki & katsuobushi', harga: 26000, stok: 28 },
+                { id_menu: 'MNU16', id_kategori: 'KAT04', nama_menu: 'Ebi Furai (3 pcs)', deskripsi: 'Udang goreng tepung roti panko renyah dengan saus tartar', harga: 29000, stok: 20 },
+                { id_menu: 'MNU17', id_kategori: 'KAT05', nama_menu: 'Matcha Ogura Mochi', deskripsi: 'Mochi kenyal isi pasta kacang merah dengan taburan bubuk matcha', harga: 22000, stok: 15 },
+                { id_menu: 'MNU18', id_kategori: 'KAT05', nama_menu: 'Hojicha Caramel Pudding', deskripsi: 'Puding teh panggang Jepang lembut dengan saus karamel', harga: 25000, stok: 14 },
+                { id_menu: 'MNU19', id_kategori: 'KAT06', nama_menu: 'Cold Ocha (Refill)', deskripsi: 'Teh hijau Jepang dingin tanpa gula', harga: 10000, stok: 60 },
+                { id_menu: 'MNU20', id_kategori: 'KAT06', nama_menu: 'Iced Uji Matcha Latte', deskripsi: 'Matcha Uji asli dikocok dengan susu segar dingin', harga: 24000, stok: 35 },
+                { id_menu: 'MNU21', id_kategori: 'KAT06', nama_menu: 'Yuzu Honey Fizz', deskripsi: 'Minuman soda segar dengan ekstrak jeruk yuzu dan madu', harga: 22000, stok: 30 }
+            ],
+            PEGAWAI: [
+                { id_pegawai: 'PEG01', nama_pegawai: 'Hana Takahashi', jabatan: 'Kasir', shift: 'Pagi', no_telepon: '081277001101' },
+                { id_pegawai: 'PEG02', nama_pegawai: 'Budi Santoso', jabatan: 'Kasir', shift: 'Malam', no_telepon: '081277001102' },
+                { id_pegawai: 'PEG03', nama_pegawai: 'Rina Amelia', jabatan: 'Kasir', shift: 'Pagi', no_telepon: '081277001103' },
+                { id_pegawai: 'PEG04', nama_pegawai: 'Chef Daiki Tanaka', jabatan: 'Koki', shift: 'Pagi', no_telepon: '081277001104' },
+                { id_pegawai: 'PEG05', nama_pegawai: 'Kenji Sato', jabatan: 'Manajer', shift: 'Pagi', no_telepon: '081277001105' },
+                { id_pegawai: 'PEG06', nama_pegawai: 'Chef Agung Wijaya', jabatan: 'Koki', shift: 'Malam', no_telepon: '081277001106' }
             ],
             PELANGGAN: [
-                { id_pelanggan: 'PLG-001', nama_pelanggan: 'Dimas Pratama', no_telepon: '0812-8890-1122', alamat: 'Jl. Rawamangun Muka No. 12, Jakarta Timur', email: 'dimas.pratama@email.com' },
-                { id_pelanggan: 'PLG-002', nama_pelanggan: 'Nadia Kusuma', no_telepon: '0857-1123-4490', alamat: 'Jl. Kayu Putih Tengah No. 8, Jakarta Timur', email: 'nadia.kusuma@email.com' },
-                { id_pelanggan: 'PLG-003', nama_pelanggan: 'Rizky Ramadhan', no_telepon: '0813-4455-7812', alamat: 'Jl. Pemuda Asli No. 21, Jakarta Timur', email: 'rizky.ramadhan@email.com' },
-                { id_pelanggan: 'PLG-004', nama_pelanggan: 'Salsabila Putri', no_telepon: '0821-7765-3301', alamat: 'Jl. Cipinang Jaya No. 45, Jakarta Timur', email: 'salsabila.putri@email.com' },
-                { id_pelanggan: 'PLG-005', nama_pelanggan: 'Fajar Nugroho', no_telepon: '0819-3340-9910', alamat: 'Jl. Utan Kayu Raya No. 19, Jakarta Timur', email: 'fajar.nugroho@email.com' },
-                { id_pelanggan: 'PLG-006', nama_pelanggan: 'Aulia Rahmawati', no_telepon: '0878-5512-6643', alamat: 'Jl. Pulo Mas Barat VI No. 3, Jakarta Timur', email: 'aulia.rahma@email.com' },
-                { id_pelanggan: 'PLG-007', nama_pelanggan: 'Bagas Saputra', no_telepon: '0812-9087-2314', alamat: 'Jl. Jatinegara Barat No. 88, Jakarta Timur', email: 'bagas.saputra@email.com' },
-                { id_pelanggan: 'PLG-008', nama_pelanggan: 'Clara Wijaya', no_telepon: '0815-6678-1120', alamat: 'Jl. Kelapa Gading Permai Blok C2, Jakarta Utara', email: 'clara.wijaya@email.com' },
-                { id_pelanggan: 'PLG-009', nama_pelanggan: 'Hendra Gunawan', no_telepon: '0811-2234-9876', alamat: 'Jl. Matraman Raya No. 102, Jakarta Timur', email: 'hendra.gunawan@email.com' },
-                { id_pelanggan: 'PLG-010', nama_pelanggan: 'Intan Permatasari', no_telepon: '0856-9901-4321', alamat: 'Jl. Tebet Timur Dalam II No. 14, Jakarta Selatan', email: 'intan.permata@email.com' },
-                { id_pelanggan: 'PLG-011', nama_pelanggan: 'Kevin Tanuwijaya', no_telepon: '0818-7744-5521', alamat: 'Jl. Sunter Agung Podomoro No. 9, Jakarta Utara', email: 'kevin.tanu@email.com' },
-                { id_pelanggan: 'PLG-012', nama_pelanggan: 'Melati Anggraini', no_telepon: '0822-3109-8745', alamat: 'Jl. Duren Sawit Raya No. 50, Jakarta Timur', email: 'melati.anggraini@email.com' }
+                { id_pelanggan: 'PLG01', nama_pelanggan: 'Raka Pratama', no_telepon: '081288991001', alamat: 'Jl. Pemuda No. 12, Rawamangun', email: 'raka.pratama@email.com' },
+                { id_pelanggan: 'PLG02', nama_pelanggan: 'Nadia Kusuma', no_telepon: '085712345678', alamat: 'Jl. Balai Pustaka Timur No. 8', email: 'nadia.k@email.com' },
+                { id_pelanggan: 'PLG03', nama_pelanggan: 'Dimas Saputra', no_telepon: '081398765432', alamat: 'Jl. Kayu Putih Raya Blok B4', email: 'dimas.saputra@email.com' },
+                { id_pelanggan: 'PLG04', nama_pelanggan: 'Alya Maharani', no_telepon: '087845612390', alamat: 'Jl. Tebet Barat Dalam No. 21', email: 'alya.maharani@email.com' },
+                { id_pelanggan: 'PLG05', nama_pelanggan: 'Fajar Nugroho', no_telepon: '082133445566', alamat: 'Jl. Cipinang Jaya No. 45', email: 'fajar.nugroho@email.com' },
+                { id_pelanggan: 'PLG06', nama_pelanggan: 'Siti Rahmawati', no_telepon: '081977665544', alamat: 'Jl. Pisangan Lama III No. 19', email: 'siti.rahma@email.com' },
+                { id_pelanggan: 'PLG07', nama_pelanggan: 'Kevin Wijaya', no_telepon: '081211223344', alamat: 'Jl. Kelapa Gading Boulevard', email: 'kevin.wijaya@email.com' },
+                { id_pelanggan: 'PLG08', nama_pelanggan: 'Putri Andriani', no_telepon: '085699887766', alamat: 'Jl. Cempaka Putih Tengah No. 7', email: 'putri.andriani@email.com' },
+                { id_pelanggan: 'PLG09', nama_pelanggan: 'Bima Sakti', no_telepon: '081355443322', alamat: 'Jl. Matraman Raya No. 88', email: 'bima.sakti@email.com' },
+                { id_pelanggan: 'PLG10', nama_pelanggan: 'Clara Angelina', no_telepon: '087766554433', alamat: 'Jl. Sunter Agung Podomoro', email: 'clara.angelina@email.com' },
+                { id_pelanggan: 'PLG11', nama_pelanggan: 'Reza Mahendra', no_telepon: '082244668800', alamat: 'Jl. Utan Kayu Selatan No. 30', email: 'reza.mahendra@email.com' },
+                { id_pelanggan: 'PLG12', nama_pelanggan: 'Tari Permatasari', no_telepon: '081588776655', alamat: 'Jl. Duren Sawit Raya No. 14', email: 'tari.permata@email.com' }
             ],
             PESANAN: [
-                { id_pesanan: 'PSN-001', tanggal_pesanan: '2026-11-21 11:30:00', id_pelanggan: 'PLG-001', total_harga: 124000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-002', tanggal_pesanan: '2026-11-21 12:05:00', id_pelanggan: 'PLG-002', total_harga: 82000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-003', tanggal_pesanan: '2026-11-21 12:22:00', id_pelanggan: 'PLG-003', total_harga: 94000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-004', tanggal_pesanan: '2026-11-21 13:10:00', id_pelanggan: 'PLG-004', total_harga: 66000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-005', tanggal_pesanan: '2026-11-21 14:40:00', id_pelanggan: 'PLG-005', total_harga: 78000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-006', tanggal_pesanan: '2026-11-21 16:15:00', id_pelanggan: 'PLG-006', total_harga: 56000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-007', tanggal_pesanan: '2026-11-21 18:05:00', id_pelanggan: 'PLG-007', total_harga: 112000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-008', tanggal_pesanan: '2026-11-21 18:35:00', id_pelanggan: 'PLG-008', total_harga: 88000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-009', tanggal_pesanan: '2026-11-21 19:02:00', id_pelanggan: 'PLG-009', total_harga: 105000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-010', tanggal_pesanan: '2026-11-21 19:20:00', id_pelanggan: 'PLG-010', total_harga: 64000, status_pesanan: 'Selesai' },
-                { id_pesanan: 'PSN-011', tanggal_pesanan: '2026-11-21 19:45:00', id_pelanggan: 'PLG-011', total_harga: 92000, status_pesanan: 'Diproses' },
-                { id_pesanan: 'PSN-012', tanggal_pesanan: '2026-11-21 19:58:00', id_pelanggan: 'PLG-012', total_harga: 58000, status_pesanan: 'Diproses' }
+                { id_pesanan: 'PSN001', tanggal_pesanan: '2026-11-20 12:15:00', id_pelanggan: 'PLG01', id_pegawai: 'PEG01', no_meja: 'M03', total_harga: 128000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN002', tanggal_pesanan: '2026-11-20 12:40:00', id_pelanggan: 'PLG02', id_pegawai: 'PEG01', no_meja: 'M01', total_harga: 93000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN003', tanggal_pesanan: '2026-11-20 13:10:00', id_pelanggan: 'PLG03', id_pegawai: 'PEG03', no_meja: 'M05', total_harga: 102000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN004', tanggal_pesanan: '2026-11-20 18:20:00', id_pelanggan: 'PLG04', id_pegawai: 'PEG02', no_meja: 'M02', total_harga: 135000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN005', tanggal_pesanan: '2026-11-20 19:05:00', id_pelanggan: 'PLG05', id_pegawai: 'PEG02', no_meja: 'M07', total_harga: 86000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN006', tanggal_pesanan: '2026-11-20 19:45:00', id_pelanggan: 'PLG06', id_pegawai: 'PEG02', no_meja: 'M04', total_harga: 114000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN007', tanggal_pesanan: '2026-11-21 12:05:00', id_pelanggan: 'PLG07', id_pegawai: 'PEG01', no_meja: 'M06', total_harga: 152000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN008', tanggal_pesanan: '2026-11-21 12:50:00', id_pelanggan: 'PLG08', id_pegawai: 'PEG03', no_meja: 'M08', total_harga: 78000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN009', tanggal_pesanan: '2026-11-21 14:15:00', id_pelanggan: 'PLG09', id_pegawai: 'PEG01', no_meja: 'M01', total_harga: 96000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN010', tanggal_pesanan: '2026-11-21 18:30:00', id_pelanggan: 'PLG10', id_pegawai: 'PEG02', no_meja: 'M03', total_harga: 120000, status_pesanan: 'Selesai' },
+                { id_pesanan: 'PSN011', tanggal_pesanan: '2026-11-21 19:20:00', id_pelanggan: 'PLG11', id_pegawai: 'PEG02', no_meja: 'M04', total_harga: 88000, status_pesanan: 'Disajikan' },
+                { id_pesanan: 'PSN012', tanggal_pesanan: '2026-11-21 20:05:00', id_pelanggan: 'PLG12', id_pegawai: 'PEG02', no_meja: 'M02', total_harga: 110000, status_pesanan: 'Diproses Dapur' }
             ],
             DETAIL_PESANAN: [
-                { id_detail: 1, id_pesanan: 'PSN-001', id_menu: 'MNU-001', jumlah: 2, harga_satuan: 38000, subtotal: 76000 },
-                { id_detail: 2, id_pesanan: 'PSN-001', id_menu: 'MNU-005', jumlah: 1, harga_satuan: 32000, subtotal: 32000 },
-                { id_detail: 3, id_pesanan: 'PSN-001', id_menu: 'MNU-019', jumlah: 2, harga_satuan: 8000, subtotal: 16000 },
-                { id_detail: 4, id_pesanan: 'PSN-002', id_menu: 'MNU-002', jumlah: 1, harga_satuan: 40000, subtotal: 40000 },
-                { id_detail: 5, id_pesanan: 'PSN-002', id_menu: 'MNU-013', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
-                { id_detail: 6, id_pesanan: 'PSN-002', id_menu: 'MNU-021', jumlah: 1, harga_satuan: 20000, subtotal: 20000 },
-                { id_detail: 7, id_pesanan: 'PSN-003', id_menu: 'MNU-011', jumlah: 2, harga_satuan: 42000, subtotal: 84000 },
-                { id_detail: 8, id_pesanan: 'PSN-003', id_menu: 'MNU-019', jumlah: 1, harga_satuan: 8000, subtotal: 8000 },
-                { id_detail: 9, id_pesanan: 'PSN-004', id_menu: 'MNU-010', jumlah: 1, harga_satuan: 35000, subtotal: 35000 },
-                { id_detail: 10, id_pesanan: 'PSN-004', id_menu: 'MNU-016', jumlah: 1, harga_satuan: 15000, subtotal: 15000 },
-                { id_detail: 11, id_pesanan: 'PSN-004', id_menu: 'MNU-018', jumlah: 1, harga_satuan: 16000, subtotal: 16000 },
-                { id_detail: 12, id_pesanan: 'PSN-005', id_menu: 'MNU-006', jumlah: 1, harga_satuan: 36000, subtotal: 36000 },
-                { id_detail: 13, id_pesanan: 'PSN-005', id_menu: 'MNU-020', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
-                { id_detail: 14, id_pesanan: 'PSN-005', id_menu: 'MNU-021', jumlah: 1, harga_satuan: 20000, subtotal: 20000 },
-                { id_detail: 15, id_pesanan: 'PSN-006', id_menu: 'MNU-014', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
-                { id_detail: 16, id_pesanan: 'PSN-006', id_menu: 'MNU-017', jumlah: 1, harga_satuan: 18000, subtotal: 18000 },
-                { id_detail: 17, id_pesanan: 'PSN-006', id_menu: 'MNU-019', jumlah: 1, harga_satuan: 8000, subtotal: 8000 },
-                { id_detail: 18, id_pesanan: 'PSN-007', id_menu: 'MNU-004', jumlah: 2, harga_satuan: 43000, subtotal: 86000 },
-                { id_detail: 19, id_pesanan: 'PSN-007', id_menu: 'MNU-015', jumlah: 1, harga_satuan: 25000, subtotal: 25000 },
-                { id_detail: 20, id_pesanan: 'PSN-008', id_menu: 'MNU-007', jumlah: 1, harga_satuan: 34000, subtotal: 34000 },
-                { id_detail: 21, id_pesanan: 'PSN-008', id_menu: 'MNU-009', jumlah: 1, harga_satuan: 30000, subtotal: 30000 },
-                { id_detail: 22, id_pesanan: 'PSN-008', id_menu: 'MNU-014', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
-                { id_detail: 23, id_pesanan: 'PSN-009', id_menu: 'MNU-003', jumlah: 2, harga_satuan: 36000, subtotal: 72000 },
-                { id_detail: 24, id_pesanan: 'PSN-009', id_menu: 'MNU-013', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
-                { id_detail: 25, id_pesanan: 'PSN-009', id_menu: 'MNU-019', jumlah: 1, harga_satuan: 8000, subtotal: 8000 },
-                { id_detail: 26, id_pesanan: 'PSN-010', id_menu: 'MNU-012', jumlah: 1, harga_satuan: 34000, subtotal: 34000 },
-                { id_detail: 27, id_pesanan: 'PSN-010', id_menu: 'MNU-020', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
-                { id_detail: 28, id_pesanan: 'PSN-010', id_menu: 'MNU-019', jumlah: 1, harga_satuan: 8000, subtotal: 8000 },
-                { id_detail: 29, id_pesanan: 'PSN-011', id_menu: 'MNU-005', jumlah: 2, harga_satuan: 32000, subtotal: 64000 },
-                { id_detail: 30, id_pesanan: 'PSN-011', id_menu: 'MNU-008', jumlah: 1, harga_satuan: 28000, subtotal: 28000 },
-                { id_detail: 31, id_pesanan: 'PSN-012', id_menu: 'MNU-001', jumlah: 1, harga_satuan: 38000, subtotal: 38000 },
-                { id_detail: 32, id_pesanan: 'PSN-012', id_menu: 'MNU-021', jumlah: 1, harga_satuan: 20000, subtotal: 20000 }
+                { id_detail: 'DTL001', id_pesanan: 'PSN001', id_menu: 'MNU01', jumlah: 2, harga_satuan: 38000, subtotal: 76000 },
+                { id_detail: 'DTL002', id_pesanan: 'PSN001', id_menu: 'MNU06', jumlah: 1, harga_satuan: 42000, subtotal: 42000 },
+                { id_detail: 'DTL003', id_pesanan: 'PSN001', id_menu: 'MNU19', jumlah: 1, harga_satuan: 10000, subtotal: 10000 },
+                { id_detail: 'DTL004', id_pesanan: 'PSN002', id_menu: 'MNU02', jumlah: 1, harga_satuan: 45000, subtotal: 45000 },
+                { id_detail: 'DTL005', id_pesanan: 'PSN002', id_menu: 'MNU14', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
+                { id_detail: 'DTL006', id_pesanan: 'PSN002', id_menu: 'MNU20', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
+                { id_detail: 'DTL007', id_pesanan: 'PSN003', id_menu: 'MNU10', jumlah: 2, harga_satuan: 40000, subtotal: 80000 },
+                { id_detail: 'DTL008', id_pesanan: 'PSN003', id_menu: 'MNU21', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
+                { id_detail: 'DTL009', id_pesanan: 'PSN004', id_menu: 'MNU12', jumlah: 2, harga_satuan: 48000, subtotal: 96000 },
+                { id_detail: 'DTL010', id_pesanan: 'PSN004', id_menu: 'MNU16', jumlah: 1, harga_satuan: 29000, subtotal: 29000 },
+                { id_detail: 'DTL011', id_pesanan: 'PSN004', id_menu: 'MNU19', jumlah: 1, harga_satuan: 10000, subtotal: 10000 },
+                { id_detail: 'DTL012', id_pesanan: 'PSN005', id_menu: 'MNU07', jumlah: 1, harga_satuan: 44000, subtotal: 44000 },
+                { id_detail: 'DTL013', id_pesanan: 'PSN005', id_menu: 'MNU17', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
+                { id_detail: 'DTL014', id_pesanan: 'PSN005', id_menu: 'MNU19', jumlah: 2, harga_satuan: 10000, subtotal: 20000 },
+                { id_detail: 'DTL015', id_pesanan: 'PSN006', id_menu: 'MNU11', jumlah: 2, harga_satuan: 39000, subtotal: 78000 },
+                { id_detail: 'DTL016', id_pesanan: 'PSN006', id_menu: 'MNU15', jumlah: 1, harga_satuan: 26000, subtotal: 26000 },
+                { id_detail: 'DTL017', id_pesanan: 'PSN006', id_menu: 'MNU19', jumlah: 1, harga_satuan: 10000, subtotal: 10000 },
+                { id_detail: 'DTL018', id_pesanan: 'PSN007', id_menu: 'MNU09', jumlah: 2, harga_satuan: 46000, subtotal: 92000 },
+                { id_detail: 'DTL019', id_pesanan: 'PSN007', id_menu: 'MNU01', jumlah: 1, harga_satuan: 38000, subtotal: 38000 },
+                { id_detail: 'DTL020', id_pesanan: 'PSN007', id_menu: 'MNU21', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
+                { id_detail: 'DTL021', id_pesanan: 'PSN008', id_menu: 'MNU08', jumlah: 1, harga_satuan: 38000, subtotal: 38000 },
+                { id_detail: 'DTL022', id_pesanan: 'PSN008', id_menu: 'MNU18', jumlah: 1, harga_satuan: 25000, subtotal: 25000 },
+                { id_detail: 'DTL023', id_pesanan: 'PSN008', id_menu: 'MNU19', jumlah: 1, harga_satuan: 15000, subtotal: 15000 },
+                { id_detail: 'DTL024', id_pesanan: 'PSN009', id_menu: 'MNU03', jumlah: 2, harga_satuan: 32000, subtotal: 64000 },
+                { id_detail: 'DTL025', id_pesanan: 'PSN009', id_menu: 'MNU20', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
+                { id_detail: 'DTL026', id_pesanan: 'PSN009', id_menu: 'MNU19', jumlah: 1, harga_satuan: 8000, subtotal: 8000 },
+                { id_detail: 'DTL027', id_pesanan: 'PSN010', id_menu: 'MNU05', jumlah: 2, harga_satuan: 28000, subtotal: 56000 },
+                { id_detail: 'DTL028', id_pesanan: 'PSN010', id_menu: 'MNU06', jumlah: 1, harga_satuan: 42000, subtotal: 42000 },
+                { id_detail: 'DTL029', id_pesanan: 'PSN010', id_menu: 'MNU17', jumlah: 1, harga_satuan: 22000, subtotal: 22000 },
+                { id_detail: 'DTL030', id_pesanan: 'PSN011', id_menu: 'MNU04', jumlah: 2, harga_satuan: 30000, subtotal: 60000 },
+                { id_detail: 'DTL031', id_pesanan: 'PSN011', id_menu: 'MNU14', jumlah: 1, harga_satuan: 24000, subtotal: 24000 },
+                { id_detail: 'DTL032', id_pesanan: 'PSN011', id_menu: 'MNU19', jumlah: 1, harga_satuan: 4000, subtotal: 4000 },
+                { id_detail: 'DTL033', id_pesanan: 'PSN012', id_menu: 'MNU13', jumlah: 2, harga_satuan: 35000, subtotal: 70000 },
+                { id_detail: 'DTL034', id_pesanan: 'PSN012', id_menu: 'MNU10', jumlah: 1, harga_satuan: 40000, subtotal: 40000 }
             ],
             PEMBAYARAN: [
-                { id_pembayaran: 'BYR-001', id_pesanan: 'PSN-001', tanggal_pembayaran: '2026-11-21 11:32:00', metode_pembayaran: 'QRIS', jumlah_bayar: 124000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-002', id_pesanan: 'PSN-002', tanggal_pembayaran: '2026-11-21 12:07:00', metode_pembayaran: 'Tunai', jumlah_bayar: 82000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-003', id_pesanan: 'PSN-003', tanggal_pembayaran: '2026-11-21 12:25:00', metode_pembayaran: 'Transfer', jumlah_bayar: 94000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-004', id_pesanan: 'PSN-004', tanggal_pembayaran: '2026-11-21 13:12:00', metode_pembayaran: 'QRIS', jumlah_bayar: 66000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-005', id_pesanan: 'PSN-005', tanggal_pembayaran: '2026-11-21 14:42:00', metode_pembayaran: 'QRIS', jumlah_bayar: 78000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-006', id_pesanan: 'PSN-006', tanggal_pembayaran: '2026-11-21 16:17:00', metode_pembayaran: 'Tunai', jumlah_bayar: 56000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-007', id_pesanan: 'PSN-007', tanggal_pembayaran: '2026-11-21 18:08:00', metode_pembayaran: 'Transfer', jumlah_bayar: 112000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-008', id_pesanan: 'PSN-008', tanggal_pembayaran: '2026-11-21 18:37:00', metode_pembayaran: 'QRIS', jumlah_bayar: 88000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-009', id_pesanan: 'PSN-009', tanggal_pembayaran: '2026-11-21 19:05:00', metode_pembayaran: 'Tunai', jumlah_bayar: 105000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-010', id_pesanan: 'PSN-010', tanggal_pembayaran: '2026-11-21 19:22:00', metode_pembayaran: 'QRIS', jumlah_bayar: 64000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-011', id_pesanan: 'PSN-011', tanggal_pembayaran: '2026-11-21 19:46:00', metode_pembayaran: 'Transfer', jumlah_bayar: 92000, status_pembayaran: 'Lunas' },
-                { id_pembayaran: 'BYR-012', id_pesanan: 'PSN-012', tanggal_pembayaran: '2026-11-21 19:59:00', metode_pembayaran: 'QRIS', jumlah_bayar: 58000, status_pembayaran: 'Lunas' }
+                { id_pembayaran: 'BYR001', id_pesanan: 'PSN001', tanggal_pembayaran: '2026-11-20 12:45:00', metode_pembayaran: 'QRIS', jumlah_bayar: 128000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR002', id_pesanan: 'PSN002', tanggal_pembayaran: '2026-11-20 13:10:00', metode_pembayaran: 'Tunai', jumlah_bayar: 93000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR003', id_pesanan: 'PSN003', tanggal_pembayaran: '2026-11-20 13:40:00', metode_pembayaran: 'Transfer', jumlah_bayar: 102000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR004', id_pesanan: 'PSN004', tanggal_pembayaran: '2026-11-20 19:00:00', metode_pembayaran: 'QRIS', jumlah_bayar: 135000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR005', id_pesanan: 'PSN005', tanggal_pembayaran: '2026-11-20 19:35:00', metode_pembayaran: 'Tunai', jumlah_bayar: 86000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR006', id_pesanan: 'PSN006', tanggal_pembayaran: '2026-11-20 20:15:00', metode_pembayaran: 'QRIS', jumlah_bayar: 114000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR007', id_pesanan: 'PSN007', tanggal_pembayaran: '2026-11-21 12:40:00', metode_pembayaran: 'Transfer', jumlah_bayar: 152000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR008', id_pesanan: 'PSN008', tanggal_pembayaran: '2026-11-21 13:20:00', metode_pembayaran: 'QRIS', jumlah_bayar: 78000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR009', id_pesanan: 'PSN009', tanggal_pembayaran: '2026-11-21 14:45:00', metode_pembayaran: 'Tunai', jumlah_bayar: 96000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR010', id_pesanan: 'PSN010', tanggal_pembayaran: '2026-11-21 19:05:00', metode_pembayaran: 'QRIS', jumlah_bayar: 120000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR011', id_pesanan: 'PSN011', tanggal_pembayaran: '2026-11-21 19:22:00', metode_pembayaran: 'QRIS', jumlah_bayar: 88000, status_pembayaran: 'Lunas' },
+                { id_pembayaran: 'BYR012', id_pesanan: 'PSN012', tanggal_pembayaran: '2026-11-21 20:06:00', metode_pembayaran: 'Transfer', jumlah_bayar: 110000, status_pembayaran: 'Menunggu' }
             ],
             BAHAN_BAKU: [
-                { id_bahan: 'BHN-001', nama_bahan: 'Mie Ramen Basah', kategori_bahan: 'Karbohidrat', jumlah_stok: 60, satuan: 'porsi', stok_minimum: 15, harga_satuan_bahan: 4500, supplier: 'PT Nippon Noodle Indonesia' },
-                { id_bahan: 'BHN-002', nama_bahan: 'Ikan Salmon Fillet Segar', kategori_bahan: 'Protein Laut', jumlah_stok: 4500, satuan: 'gram', stok_minimum: 1000, harga_satuan_bahan: 280, supplier: 'PT Segar Laut Nusantara' },
-                { id_bahan: 'BHN-003', nama_bahan: 'Beras Jepang Japonica', kategori_bahan: 'Karbohidrat', jumlah_stok: 25000, satuan: 'gram', stok_minimum: 5000, harga_satuan_bahan: 28, supplier: 'CV Padi Makmur Jaya' },
-                { id_bahan: 'BHN-004', nama_bahan: 'Rumput Laut Nori Sheet', kategori_bahan: 'Bahan Kering', jumlah_stok: 120, satuan: 'lembar', stok_minimum: 30, harga_satuan_bahan: 1800, supplier: 'Toko Bahan Jepang Sakura' },
-                { id_bahan: 'BHN-005', nama_bahan: 'Kaldu Ayam Paitan Pekat', kategori_bahan: 'Bumbu & Kuah', jumlah_stok: 15000, satuan: 'ml', stok_minimum: 3000, harga_satuan_bahan: 25, supplier: 'Dapur Sentral Oishidesu' },
-                { id_bahan: 'BHN-006', nama_bahan: 'Pasta Miso Putih Jepang', kategori_bahan: 'Bumbu & Kuah', jumlah_stok: 3500, satuan: 'gram', stok_minimum: 800, harga_satuan_bahan: 85, supplier: 'Toko Bahan Jepang Sakura' },
-                { id_bahan: 'BHN-007', nama_bahan: 'Daging Sapi US Shortplate', kategori_bahan: 'Protein Daging', jumlah_stok: 4000, satuan: 'gram', stok_minimum: 1000, harga_satuan_bahan: 145, supplier: 'PT Prima Daging Utama' },
-                { id_bahan: 'BHN-008', nama_bahan: 'Dada Ayam Fillet', kategori_bahan: 'Protein Daging', jumlah_stok: 6000, satuan: 'gram', stok_minimum: 1500, harga_satuan_bahan: 55, supplier: 'CV Unggas Segar Jakarta' },
-                { id_bahan: 'BHN-009', nama_bahan: 'Saus Mentai Spesial', kategori_bahan: 'Saus & Topping', jumlah_stok: 480, satuan: 'gram', stok_minimum: 500, harga_satuan_bahan: 95, supplier: 'Toko Bahan Jepang Sakura' },
-                { id_bahan: 'BHN-010', nama_bahan: 'Kecap Asin Shoyu Jepang', kategori_bahan: 'Bumbu & Kuah', jumlah_stok: 5000, satuan: 'ml', stok_minimum: 1000, harga_satuan_bahan: 40, supplier: 'Toko Bahan Jepang Sakura' },
-                { id_bahan: 'BHN-011', nama_bahan: 'Tepung Roti Panko', kategori_bahan: 'Bahan Kering', jumlah_stok: 4000, satuan: 'gram', stok_minimum: 1000, harga_satuan_bahan: 32, supplier: 'PT Boga Sari Makmur' },
-                { id_bahan: 'BHN-012', nama_bahan: 'Telur Ayam Omega', kategori_bahan: 'Protein', jumlah_stok: 90, satuan: 'butir', stok_minimum: 24, harga_satuan_bahan: 2800, supplier: 'Peternakan Sehat Bogor' },
-                { id_bahan: 'BHN-013', nama_bahan: 'Kulit Gyoza Siap Pakai', kategori_bahan: 'Bahan Kering', jumlah_stok: 150, satuan: 'lembar', stok_minimum: 40, harga_satuan_bahan: 600, supplier: 'PT Nippon Noodle Indonesia' },
-                { id_bahan: 'BHN-014', nama_bahan: 'Potongan Gurita Rebus', kategori_bahan: 'Protein Laut', jumlah_stok: 2500, satuan: 'gram', stok_minimum: 600, harga_satuan_bahan: 160, supplier: 'PT Segar Laut Nusantara' },
-                { id_bahan: 'BHN-015', nama_bahan: 'Bubuk Matcha Uji Premium', kategori_bahan: 'Dessert & Minuman', jumlah_stok: 1200, satuan: 'gram', stok_minimum: 300, harga_satuan_bahan: 350, supplier: 'Kyoto Matcha Supply ID' },
-                { id_bahan: 'BHN-016', nama_bahan: 'Daun Teh Hijau Ocha', kategori_bahan: 'Dessert & Minuman', jumlah_stok: 2000, satuan: 'gram', stok_minimum: 400, harga_satuan_bahan: 120, supplier: 'Kyoto Matcha Supply ID' }
+                { id_bahan: 'BHN01', nama_bahan: 'Beras Jepang (Japonica Rice)', satuan: 'gram', stok_bahan: 18500, batas_minimum: 5000, supplier: 'PT Nippon Pangan' },
+                { id_bahan: 'BHN02', nama_bahan: 'Fillet Salmon Segar', satuan: 'gram', stok_bahan: 6200, batas_minimum: 1500, supplier: 'Tsukiji Indo Seafood' },
+                { id_bahan: 'BHN03', nama_bahan: 'Mie Ramen Basah', satuan: 'porsi', stok_bahan: 75, batas_minimum: 20, supplier: 'Pabrik Mie Sakura' },
+                { id_bahan: 'BHN04', nama_bahan: 'Kaldu Ayam Paitan Pekat', satuan: 'ml', stok_bahan: 14000, batas_minimum: 3000, supplier: 'Produksi Dapur Sentral' },
+                { id_bahan: 'BHN05', nama_bahan: 'Daging Sapi Slice US', satuan: 'gram', stok_bahan: 4800, batas_minimum: 1200, supplier: 'MeatMaster Jakarta' },
+                { id_bahan: 'BHN06', nama_bahan: 'Dada Ayam Fillet', satuan: 'gram', stok_bahan: 7500, batas_minimum: 2000, supplier: 'FreshPoultry Utama' },
+                { id_bahan: 'BHN07', nama_bahan: 'Nori Lembaran Roasted', satuan: 'lembar', stok_bahan: 180, batas_minimum: 40, supplier: 'PT Nippon Pangan' },
+                { id_bahan: 'BHN08', nama_bahan: 'Saus Mentai Spesial', satuan: 'gram', stok_bahan: 3200, batas_minimum: 800, supplier: 'Produksi Dapur Sentral' },
+                { id_bahan: 'BHN09', nama_bahan: 'Telur Ayam Omega (Tamago)', satuan: 'butir', stok_bahan: 90, batas_minimum: 24, supplier: 'FarmSegar Bekasi' },
+                { id_bahan: 'BHN10', nama_bahan: 'Udang Kupas Segar', satuan: 'gram', stok_bahan: 3600, batas_minimum: 1000, supplier: 'Tsukiji Indo Seafood' },
+                { id_bahan: 'BHN11', nama_bahan: 'Belut Unagi Kabayaki', satuan: 'gram', stok_bahan: 2100, batas_minimum: 600, supplier: 'Tsukiji Indo Seafood' },
+                { id_bahan: 'BHN12', nama_bahan: 'Blok Kari Jepang', satuan: 'gram', stok_bahan: 2800, batas_minimum: 700, supplier: 'PT Nippon Pangan' },
+                { id_bahan: 'BHN13', nama_bahan: 'Kulit Gyoza & Adonan Tako', satuan: 'gram', stok_bahan: 4000, batas_minimum: 1000, supplier: 'Pabrik Mie Sakura' },
+                { id_bahan: 'BHN14', nama_bahan: 'Bubuk Uji Matcha', satuan: 'gram', stok_bahan: 950, batas_minimum: 250, supplier: 'Kyoto Tea Import' },
+                { id_bahan: 'BHN15', nama_bahan: 'Daun Teh Ocha Kering', satuan: 'gram', stok_bahan: 1500, batas_minimum: 300, supplier: 'Kyoto Tea Import' },
+                { id_bahan: 'BHN16', nama_bahan: 'Sirup Yuzu & Madu', satuan: 'ml', stok_bahan: 2400, batas_minimum: 500, supplier: 'CitrusIndo Beverage' }
             ],
             RESEP_BAHAN: [
-                { id_resep: 'RSP-001', id_menu: 'MNU-001', id_bahan: 'BHN-001', takaran_pakai: 1, satuan_pakai: 'porsi' },
-                { id_resep: 'RSP-002', id_menu: 'MNU-001', id_bahan: 'BHN-005', takaran_pakai: 350, satuan_pakai: 'ml' },
-                { id_resep: 'RSP-003', id_menu: 'MNU-001', id_bahan: 'BHN-008', takaran_pakai: 80, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-004', id_menu: 'MNU-001', id_bahan: 'BHN-012', takaran_pakai: 1, satuan_pakai: 'butir' },
-                { id_resep: 'RSP-005', id_menu: 'MNU-002', id_bahan: 'BHN-001', takaran_pakai: 1, satuan_pakai: 'porsi' },
-                { id_resep: 'RSP-006', id_menu: 'MNU-002', id_bahan: 'BHN-006', takaran_pakai: 45, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-007', id_menu: 'MNU-003', id_bahan: 'BHN-001', takaran_pakai: 1, satuan_pakai: 'porsi' },
-                { id_resep: 'RSP-008', id_menu: 'MNU-003', id_bahan: 'BHN-010', takaran_pakai: 40, satuan_pakai: 'ml' },
-                { id_resep: 'RSP-009', id_menu: 'MNU-005', id_bahan: 'BHN-002', takaran_pakai: 90, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-010', id_menu: 'MNU-005', id_bahan: 'BHN-003', takaran_pakai: 150, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-011', id_menu: 'MNU-005', id_bahan: 'BHN-004', takaran_pakai: 1, satuan_pakai: 'lembar' },
-                { id_resep: 'RSP-012', id_menu: 'MNU-005', id_bahan: 'BHN-009', takaran_pakai: 30, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-013', id_menu: 'MNU-010', id_bahan: 'BHN-003', takaran_pakai: 200, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-014', id_menu: 'MNU-010', id_bahan: 'BHN-008', takaran_pakai: 120, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-015', id_menu: 'MNU-010', id_bahan: 'BHN-011', takaran_pakai: 40, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-016', id_menu: 'MNU-011', id_bahan: 'BHN-003', takaran_pakai: 200, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-017', id_menu: 'MNU-011', id_bahan: 'BHN-007', takaran_pakai: 110, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-018', id_menu: 'MNU-013', id_bahan: 'BHN-013', takaran_pakai: 5, satuan_pakai: 'lembar' },
-                { id_resep: 'RSP-019', id_menu: 'MNU-014', id_bahan: 'BHN-014', takaran_pakai: 60, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-020', id_menu: 'MNU-019', id_bahan: 'BHN-016', takaran_pakai: 10, satuan_pakai: 'gram' },
-                { id_resep: 'RSP-021', id_menu: 'MNU-020', id_bahan: 'BHN-015', takaran_pakai: 12, satuan_pakai: 'gram' }
+                { id_resep: 'RSP01', id_menu: 'MNU01', id_bahan: 'BHN01', takaran: 150 },
+                { id_resep: 'RSP02', id_menu: 'MNU01', id_bahan: 'BHN02', takaran: 80 },
+                { id_resep: 'RSP03', id_menu: 'MNU01', id_bahan: 'BHN07', takaran: 1 },
+                { id_resep: 'RSP04', id_menu: 'MNU01', id_bahan: 'BHN08', takaran: 35 },
+                { id_resep: 'RSP05', id_menu: 'MNU02', id_bahan: 'BHN01', takaran: 150 },
+                { id_resep: 'RSP06', id_menu: 'MNU02', id_bahan: 'BHN10', takaran: 60 },
+                { id_resep: 'RSP07', id_menu: 'MNU02', id_bahan: 'BHN11', takaran: 70 },
+                { id_resep: 'RSP08', id_menu: 'MNU06', id_bahan: 'BHN03', takaran: 1 },
+                { id_resep: 'RSP09', id_menu: 'MNU06', id_bahan: 'BHN04', takaran: 350 },
+                { id_resep: 'RSP10', id_menu: 'MNU06', id_bahan: 'BHN06', takaran: 90 },
+                { id_resep: 'RSP11', id_menu: 'MNU06', id_bahan: 'BHN09', takaran: 1 },
+                { id_resep: 'RSP12', id_menu: 'MNU10', id_bahan: 'BHN01', takaran: 200 },
+                { id_resep: 'RSP13', id_menu: 'MNU10', id_bahan: 'BHN05', takaran: 110 },
+                { id_resep: 'RSP14', id_menu: 'MNU11', id_bahan: 'BHN01', takaran: 200 },
+                { id_resep: 'RSP15', id_menu: 'MNU11', id_bahan: 'BHN06', takaran: 120 },
+                { id_resep: 'RSP16', id_menu: 'MNU11', id_bahan: 'BHN12', takaran: 45 },
+                { id_resep: 'RSP17', id_menu: 'MNU14', id_bahan: 'BHN06', takaran: 75 },
+                { id_resep: 'RSP18', id_menu: 'MNU14', id_bahan: 'BHN13', takaran: 60 },
+                { id_resep: 'RSP19', id_menu: 'MNU19', id_bahan: 'BHN15', takaran: 5 },
+                { id_resep: 'RSP20', id_menu: 'MNU20', id_bahan: 'BHN14', takaran: 12 },
+                { id_resep: 'RSP21', id_menu: 'MNU21', id_bahan: 'BHN16', takaran: 35 }
+            ],
+            LAPORAN_BULANAN: [
+                { id_laporan: 'LAP-2026-09', periode_bulan: 'September 2026', id_pegawai: 'PEG05', total_transaksi: 312, total_pendapatan: 28450000, menu_terlaris: 'Tori Paitan Ramen', tanggal_cetak: '2026-10-01' },
+                { id_laporan: 'LAP-2026-10', periode_bulan: 'Oktober 2026', id_pegawai: 'PEG05', total_transaksi: 348, total_pendapatan: 31920000, menu_terlaris: 'Salmon Mentai Roll', tanggal_cetak: '2026-11-01' },
+                { id_laporan: 'LAP-2026-11', periode_bulan: 'November 2026', id_pegawai: 'PEG05', total_transaksi: 12, total_pendapatan: 1192000, menu_terlaris: 'Salmon Mentai Roll', tanggal_cetak: '2026-11-23' }
             ]
         });
 
         const tableKeysMeta = {
             KATEGORI: 'PK: id_kategori | 6 Kategori Menu Restoran Jepang',
             MENU: 'PK: id_menu | FK: id_kategori → KATEGORI(id_kategori) | 21 Menu Lengkap',
+            PEGAWAI: 'PK: id_pegawai | 6 Data Pegawai (Kasir, Koki, Manajer)',
             PELANGGAN: 'PK: id_pelanggan | 12 Data Pelanggan Terdaftar',
-            PESANAN: 'PK: id_pesanan | FK: id_pelanggan → PELANGGAN(id_pelanggan)',
+            PESANAN: 'PK: id_pesanan | FK: id_pelanggan → PELANGGAN, id_pegawai → PEGAWAI (Kasir) | Atribut: no_meja',
             DETAIL_PESANAN: 'PK: id_detail | FK: id_pesanan → PESANAN, id_menu → MENU',
             PEMBAYARAN: 'PK: id_pembayaran | FK: id_pesanan → PESANAN (Tunai, QRIS, Transfer)',
             BAHAN_BAKU: 'PK: id_bahan | 16 Stok Bahan Makanan Dapur & Batas Minimum',
-            RESEP_BAHAN: 'PK: id_resep | FK: id_menu → MENU, id_bahan → BAHAN_BAKU'
+            RESEP_BAHAN: 'PK: id_resep | FK: id_menu → MENU, id_bahan → BAHAN_BAKU',
+            LAPORAN_BULANAN: 'PK: id_laporan | FK: id_pegawai → PEGAWAI (Manajer) | Rekap Akhir Bulanan'
         };
 
         let db = initialDatabase();
-        let activeTable = 'MENU';
+        let activeTable = 'PESANAN';
 
         const formatRupiah = (num) => 'Rp ' + Number(num).toLocaleString('id-ID');
 
@@ -1281,9 +1402,9 @@ INSERT INTO BAHAN_BAKU VALUES
 
             document.querySelectorAll('.db-tab').forEach(btn => {
                 if (btn.dataset.table === tableName) {
-                    btn.className = 'db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-vermilion text-white transition-colors';
+                    btn.className = 'db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-vermilion text-white transition-colors';
                 } else {
-                    btn.className = 'db-tab px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 hover:bg-stone-200 dark:hover:bg-zinc-700 transition-colors';
+                    btn.className = 'db-tab px-2.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 hover:bg-stone-200 dark:hover:bg-zinc-700 transition-colors';
                 }
             });
 
@@ -1297,18 +1418,25 @@ INSERT INTO BAHAN_BAKU VALUES
             headEl.innerHTML = '<tr>' + columns.map(col => `<th class="p-3 font-semibold whitespace-nowrap">${col}</th>`).join('') + '</tr>';
 
             bodyEl.innerHTML = rows.map(row => {
-                const isLowStock = tableName === 'BAHAN_BAKU' && row.jumlah_stok <= row.stok_minimum;
+                const isLowStock = tableName === 'BAHAN_BAKU' && row.stok_bahan <= row.batas_minimum;
                 return `<tr class="hover:bg-stone-50 dark:hover:bg-zinc-800/40 ${isLowStock ? 'bg-red-50/60 dark:bg-red-950/20' : ''}">` + columns.map(col => {
                     let val = row[col];
-                    if (['harga', 'total_harga', 'harga_satuan', 'subtotal', 'jumlah_bayar', 'harga_satuan_bahan'].includes(col)) {
+                    if (['harga', 'total_harga', 'harga_satuan', 'subtotal', 'jumlah_bayar', 'total_pendapatan'].includes(col)) {
                         val = formatRupiah(val);
                     }
-                    if (tableName === 'BAHAN_BAKU' && col === 'jumlah_stok') {
+                    if (tableName === 'PESANAN' && col === 'id_pegawai') {
+                        const peg = db.PEGAWAI.find(p => p.id_pegawai === val);
+                        val = peg ? `${val} (${peg.nama_pegawai})` : val;
+                    }
+                    if (tableName === 'BAHAN_BAKU' && col === 'stok_bahan') {
                         val = isLowStock ? `${val} (Menipis!)` : val;
                     }
                     const isPk = col.startsWith('id_') && columns.indexOf(col) === 0;
                     let cellClass = isPk ? 'font-semibold text-vermilion dark:text-red-400' : '';
-                    if (isLowStock && col === 'jumlah_stok') {
+                    if (col === 'no_meja') {
+                        cellClass = 'font-bold text-amber-700 dark:text-amber-400';
+                    }
+                    if (isLowStock && col === 'stok_bahan') {
                         cellClass = 'font-bold text-vermilion dark:text-red-400';
                     }
                     return `<td class="p-3 whitespace-nowrap ${cellClass}">${val}</td>`;
@@ -1317,8 +1445,14 @@ INSERT INTO BAHAN_BAKU VALUES
         }
 
         function populateFormDropdowns() {
+            const kasirSelect = document.getElementById('inputKasir');
             const pelSelect = document.getElementById('inputPelanggan');
             const menuSelect = document.getElementById('inputMenu');
+
+            kasirSelect.innerHTML = db.PEGAWAI
+                .filter(p => p.jabatan === 'Kasir')
+                .map(k => `<option value="${k.id_pegawai}">${k.id_pegawai} — ${k.nama_pegawai} (${k.shift})</option>`)
+                .join('');
 
             pelSelect.innerHTML = db.PELANGGAN.map(p =>
                 `<option value="${p.id_pelanggan}">${p.id_pelanggan} — ${p.nama_pelanggan}</option>`
@@ -1338,13 +1472,21 @@ INSERT INTO BAHAN_BAKU VALUES
                 .reduce((sum, item) => sum + item.jumlah_bayar, 0);
             const totalMenuTerjual = db.DETAIL_PESANAN
                 .reduce((sum, item) => sum + item.jumlah, 0);
+            const kasirCount = db.PEGAWAI.filter(p => p.jabatan === 'Kasir').length;
             const bahanMenipis = db.BAHAN_BAKU
-                .filter(b => b.jumlah_stok <= b.stok_minimum).length;
+                .filter(b => b.stok_bahan <= b.batas_minimum).length;
+
+            // Sinkronkan baris bulan berjalan (LAP-2026-11)
+            const novReport = db.LAPORAN_BULANAN.find(l => l.id_laporan === 'LAP-2026-11');
+            if (novReport) {
+                novReport.total_transaksi = totalTransaksi;
+                novReport.total_pendapatan = totalPendapatan;
+            }
 
             document.getElementById('statTransaksi').textContent = `${totalTransaksi} Transaksi`;
             document.getElementById('statPendapatan').textContent = formatRupiah(totalPendapatan);
             document.getElementById('statTerjual').textContent = `${totalMenuTerjual} Porsi`;
-            document.getElementById('statBahanAlert').textContent = `${bahanMenipis} Bahan`;
+            document.getElementById('statBahanAlert').textContent = `${kasirCount} Kasir · ${bahanMenipis} Min`;
         }
 
         document.getElementById('tableTabs').addEventListener('click', (e) => {
@@ -1357,12 +1499,16 @@ INSERT INTO BAHAN_BAKU VALUES
         document.getElementById('simOrderForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const feedbackEl = document.getElementById('simFeedback');
+            const idPegawai = document.getElementById('inputKasir').value;
+            const noMeja = document.getElementById('inputMeja').value;
             const idPelanggan = document.getElementById('inputPelanggan').value;
             const idMenu = document.getElementById('inputMenu').value;
             const jumlah = parseInt(document.getElementById('inputJumlah').value, 10);
             const metode = document.getElementById('inputMetode').value;
 
             const menuItem = db.MENU.find(m => m.id_menu === idMenu);
+            const kasirObj = db.PEGAWAI.find(k => k.id_pegawai === idPegawai);
+
             if (!menuItem || menuItem.stok < jumlah) {
                 feedbackEl.className = 'text-xs font-mono text-red-600 dark:text-red-400';
                 feedbackEl.textContent = `Gagal: Stok ${menuItem ? menuItem.nama_menu : 'menu'} tidak mencukupi!`;
@@ -1370,9 +1516,10 @@ INSERT INTO BAHAN_BAKU VALUES
             }
 
             const nextOrderNum = String(db.PESANAN.length + 1).padStart(3, '0');
-            const newIdPesanan = `PSN-${nextOrderNum}`;
-            const newIdBayar = `BYR-${nextOrderNum}`;
-            const newIdDetail = db.DETAIL_PESANAN.length + 1;
+            const nextDetailNum = String(db.DETAIL_PESANAN.length + 1).padStart(3, '0');
+            const newIdPesanan = `PSN${nextOrderNum}`;
+            const newIdBayar = `BYR${nextOrderNum}`;
+            const newIdDetail = `DTL${nextDetailNum}`;
             const subtotal = menuItem.harga * jumlah;
 
             const now = new Date();
@@ -1382,13 +1529,15 @@ INSERT INTO BAHAN_BAKU VALUES
                 String(now.getHours()).padStart(2, '0') + ':' +
                 String(now.getMinutes()).padStart(2, '0') + ':00';
 
-            // 1. Insert ke PESANAN
+            // 1. Insert ke PESANAN (dengan Kasir & Nomor Meja)
             db.PESANAN.push({
                 id_pesanan: newIdPesanan,
                 tanggal_pesanan: timestamp,
                 id_pelanggan: idPelanggan,
+                id_pegawai: idPegawai,
+                no_meja: noMeja,
                 total_harga: subtotal,
-                status_pesanan: 'Diproses'
+                status_pesanan: 'Diproses Dapur'
             });
 
             // 2. Insert ke DETAIL_PESANAN
@@ -1420,30 +1569,28 @@ INSERT INTO BAHAN_BAKU VALUES
             resepTerkait.forEach(resep => {
                 const bahan = db.BAHAN_BAKU.find(b => b.id_bahan === resep.id_bahan);
                 if (bahan) {
-                    const totalPakai = resep.takaran_pakai * jumlah;
-                    bahan.jumlah_stok = Math.max(0, bahan.jumlah_stok - totalPakai);
-                    infoBahanTerpotong.push(`${bahan.nama_bahan} (-${totalPakai} ${resep.satuan_pakai})`);
+                    const totalPakai = resep.takaran * jumlah;
+                    bahan.stok_bahan = Math.max(0, bahan.stok_bahan - totalPakai);
+                    infoBahanTerpotong.push(`${bahan.nama_bahan} (-${totalPakai} ${bahan.satuan})`);
                 }
             });
 
             populateFormDropdowns();
-            renderTable('BAHAN_BAKU');
+            renderTable('PESANAN');
 
             feedbackEl.className = 'text-xs font-mono text-emerald-700 dark:text-emerald-400';
-            feedbackEl.textContent = infoBahanTerpotong.length > 0
-                ? `Berhasil (${newIdPesanan}): Stok menu -${jumlah} & bahan dapur terpotong: ${infoBahanTerpotong.join(', ')}.`
-                : `Berhasil: ${newIdPesanan} tersimpan, ${newIdBayar} lunas, stok ${menuItem.id_menu} berkurang ${jumlah}.`;
+            feedbackEl.textContent = `Berhasil: ${newIdPesanan} (Meja ${noMeja}, Kasir: ${kasirObj ? kasirObj.nama_pegawai : idPegawai}) tersimpan & Laporan Bulanan diperbarui!`;
         });
 
         document.getElementById('resetDbBtn').addEventListener('click', () => {
             db = initialDatabase();
             populateFormDropdowns();
             renderTable(activeTable);
-            document.getElementById('simFeedback').textContent = 'Database di-reset ke data awal.';
+            document.getElementById('simFeedback').textContent = 'Database 10 tabel di-reset ke data awal.';
         });
 
         populateFormDropdowns();
-        renderTable('MENU');
+        renderTable('PESANAN');
     </script>
 </body>
 </html>
